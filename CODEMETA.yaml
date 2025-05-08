@@ -29,12 +29,12 @@
 
 ---
 categories:
-  # - ai-ml
+  - ai-ml
   # - performance-and-workflow
-  - scientific-software
+  # - scientific-software
   # - simulation
   # - tools
-  # - visualization
+  - visualization
 
 themes:
   - Information Technology
@@ -44,16 +44,16 @@ themes:
   #     - Quantum communications
   #     - Wireless (RF)
   #
-  # - Bioscience
+   - Bioscience
   #     - Biomaterials
-  #     - Biomolecular characterization
+       - Biomolecular characterization
   #     - Bioprocessing
   #     - Cell biology
-  #     - Engineering or synthetic biology
+       - Engineering or synthetic biology
   #     - Genomics
   #     - Glycomics
   #     - Metabolomics
-  #     - Microbial measurements
+       - Microbial measurements
   #     - Proteomics
   #
   # - Buildings and Construction
@@ -128,8 +128,8 @@ themes:
   #     - Precision medicine
   #     - Regenerative medicine
   #
-  # - Information Technology
-  #     - Artificial intelligence
+   - Information Technology
+       - Artificial intelligence
   #     - Biometrics
   #     - Cloud computing and virtualization
   #     - Complex systems
