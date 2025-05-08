@@ -1,0 +1,101 @@
+query_sequence,top_match,e_value
+t7rnapol_0,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_1,ref|WP_260790296.1| DNA-directed RNA polymerase [Pseudomonas aeruginosa] >gb|UXA41723.1| hypothetical protein MMG97_16465 [Pseudomonas aeruginosa],0.0
+t7rnapol_2,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_3,gb|WPK33069.1| DNA-directed RNA polymerase [Escherichia phage AV103],0.0
+t7rnapol_4,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_5,ref|WP_260790296.1| DNA-directed RNA polymerase [Pseudomonas aeruginosa] >gb|UXA41723.1| hypothetical protein MMG97_16465 [Pseudomonas aeruginosa],0.0
+t7rnapol_6,gb|WPK33069.1| DNA-directed RNA polymerase [Escherichia phage AV103],0.0
+t7rnapol_7,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_8,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_9,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_10,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_11,gb|AAA32569.1| RNA polymerase [Escherichia phage T7] >gb|ALY06011.1| T7 RNA polymerase [Cloning vector pAKT7] >gb|ALY06013.1| T7 RNA polymerase [Cloning vector pYAT7],0.0
+t7rnapol_12,gb|XLQ29395.1| RNA polymerase [Escherichia phage KKE5P],0.0
+t7rnapol_13,gb|QXV80637.1| RNA polymerase [Escherichia phage JacobBurckhardt],0.0
+t7rnapol_14,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_15,ref|YP_009804754.1| RNA polymerase [Salmonella phage 3A_8767] >gb|AXC37072.1| DNA-directed RNA polymerase [Salmonella phage 3A_8767],0.0
+t7rnapol_16,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_17,gb|AAA32569.1| RNA polymerase [Escherichia phage T7] >gb|ALY06011.1| T7 RNA polymerase [Cloning vector pAKT7] >gb|ALY06013.1| T7 RNA polymerase [Cloning vector pYAT7],0.0
+t7rnapol_18,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_19,gb|WPK33069.1| DNA-directed RNA polymerase [Escherichia phage AV103],0.0
+t7rnapol_20,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_21,gb|XLQ29395.1| RNA polymerase [Escherichia phage KKE5P],0.0
+t7rnapol_22,ref|WP_260790296.1| DNA-directed RNA polymerase [Pseudomonas aeruginosa] >gb|UXA41723.1| hypothetical protein MMG97_16465 [Pseudomonas aeruginosa],0.0
+t7rnapol_23,gb|WPK33069.1| DNA-directed RNA polymerase [Escherichia phage AV103],0.0
+t7rnapol_24,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_25,gb|WPK33069.1| DNA-directed RNA polymerase [Escherichia phage AV103],0.0
+t7rnapol_26,ref|WP_260790296.1| DNA-directed RNA polymerase [Pseudomonas aeruginosa] >gb|UXA41723.1| hypothetical protein MMG97_16465 [Pseudomonas aeruginosa],0.0
+t7rnapol_27,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",0.0
+t7rnapol_28,gb|WPK33069.1| DNA-directed RNA polymerase [Escherichia phage AV103],0.0
+t7rnapol_29,gb|AAA32569.1| RNA polymerase [Escherichia phage T7] >gb|ALY06011.1| T7 RNA polymerase [Cloning vector pAKT7] >gb|ALY06013.1| T7 RNA polymerase [Cloning vector pYAT7],0.0
+t7rnapol_30,gb|WEU68248.1| DNA-directed RNA polymerase [Escherichia phage vB_Ec_Tarrare],1.87204e-132
+t7rnapol_31,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",5.78591e-139
+t7rnapol_32,gb|QWY13933.1| T3/T7-like RNA polymerase [Escherichia phage T7] >gb|QWY13983.1| T3/T7-like RNA polymerase [Escherichia phage T7],1.31068e-147
+t7rnapol_33,gb|WBF69716.1| DNA-directed RNA polymerase [Shigella phage SFP21B],9.06481e-77
+t7rnapol_34,gb|QLF85705.1| DNA-directed RNA polymerase [Serratia phage vB_SmaP-UFV01],4.25957e-123
+t7rnapol_35,gb|AZV02339.2| DNA-directed RNA polymerase [Pectobacterium phage Q19] >gb|WOL25676.1| hypothetical protein [Pectobacterium phage PcaP1EGY],3.91069e-84
+t7rnapol_36,gb|QOV06378.1| DNA-directed RNA polymerase [Escherichia phage JB01],4.71113e-141
+t7rnapol_37,emb|CAA24333.1| unnamed protein product [Escherichia phage T7],3.10111e-129
+t7rnapol_38,gb|WEU68248.1| DNA-directed RNA polymerase [Escherichia phage vB_Ec_Tarrare],1.18621e-123
+t7rnapol_39,gb|WPJ67457.1| RNA polymerase [Escherichia phage Carena],7.60514e-81
+t7rnapol_40,tpg|HCU2121986.1| DNA-dependent RNA polymerase [Klebsiella pneumoniae],5.7661e-90
+t7rnapol_41,gb|UJQ71098.1| RNA polymerase [Escherichia phage T7],4.31544e-72
+t7rnapol_42,gb|QWY13933.1| T3/T7-like RNA polymerase [Escherichia phage T7] >gb|QWY13983.1| T3/T7-like RNA polymerase [Escherichia phage T7],1.8725e-136
+t7rnapol_43,gb|KAL2513886.1| Leucine-rich repeat receptor-like serine/threonine-protein kinase BAM3 [Forsythia ovata],1.55837e-134
+t7rnapol_44,"pdb|1ARO|P Chain P, T7 RNA POLYMERASE [Escherichia phage T7]",6.29654e-117
+t7rnapol_45,gb|AIS22793.1| UmuD-T7 RNA polymerase(1-514) [synthetic vector pCOLA-AraC-pBAD-T7_RNAP(515-884)-UmuD-T7RNAP(1-514)],1.81898e-57
+t7rnapol_46,gb|AIS22793.1| UmuD-T7 RNA polymerase(1-514) [synthetic vector pCOLA-AraC-pBAD-T7_RNAP(515-884)-UmuD-T7RNAP(1-514)],9.36545e-56
+t7rnapol_47,gb|MDA2621644.1| hypothetical protein [Bacillus cereus],1.56817e-49
+t7rnapol_48,gb|AIS22794.1| T7 RNA polymerase (515-884) [synthetic vector pCOLA-AraC-pBAD-T7_RNAP(515-884)-UmuD-T7RNAP(1-514)],1.67319e-48
+t7rnapol_49_M1,gb|QHJ79918.1| MAG: hypothetical protein [Caudoviricetes sp.],9.34552e-52
+t7rnapol_50,gb|WCS66925.1| DNA-directed RNA polymerase [Serratia phage HMGUsm2],1.70727e-43
+t7rnapol_51,NA,NA
+t7rnapol_52,gb|MDA2621644.1| hypothetical protein [Bacillus cereus],3.61992e-28
+t7rnapol_53,ref|YP_009187276.1| N4-like RNA polymerase [Yersinia phage vB_YenP_AP10] >gb|ALK86936.1| RNA polymerase [Yersinia phage vB_YenP_AP10],3.53016e-53
+t7rnapol_54,gb|UTQ80063.1| RNA polymerase [Erwinia phage Stepyanka],7.62369e-05
+t7rnapol_55,gb|QZB84819.1| RNA polymerase [Escherichia phage T7],6.32179e-57
+t7rnapol_56,"gb|WOG34502.1| T7 RNA polymerase, partial [synthetic construct] >gb|WOG34505.1| T7 RNA polymerase, partial [synthetic construct]",1.17345e-47
+t7rnapol_57,NA,NA
+t7rnapol_58,NA,NA
+t7rnapol_59,NA,NA
+t7rnapol_60,NA,NA
+t7rnapol_61,NA,NA
+t7rnapol_62,NA,NA
+t7rnapol_63,NA,NA
+t7rnapol_64,NA,NA
+t7rnapol_65,NA,NA
+t7rnapol_66,NA,NA
+t7rnapol_67,NA,NA
+t7rnapol_68,NA,NA
+t7rnapol_69,NA,NA
+t7rnapol_70,NA,NA
+t7rnapol_71,NA,NA
+t7rnapol_72,NA,NA
+t7rnapol_73,NA,NA
+t7rnapol_74_M1,NA,NA
+t7rnapol_75,NA,NA
+t7rnapol_76,NA,NA
+t7rnapol_77,NA,NA
+t7rnapol_78,NA,NA
+t7rnapol_79,NA,NA
+t7rnapol_80,NA,NA
+t7rnapol_81,NA,NA
+t7rnapol_82,NA,NA
+t7rnapol_83,NA,NA
+t7rnapol_84,NA,NA
+t7rnapol_85,NA,NA
+t7rnapol_86,NA,NA
+t7rnapol_87,NA,NA
+t7rnapol_88,NA,NA
+t7rnapol_89,NA,NA
+t7rnapol_90_M1,NA,NA
+t7rnapol_91,NA,NA
+t7rnapol_92,NA,NA
+t7rnapol_93,NA,NA
+t7rnapol_94,NA,NA
+t7rnapol_95,NA,NA
+t7rnapol_96,NA,NA
+t7rnapol_97,NA,NA
+t7rnapol_98,NA,NA
+t7rnapol_99,NA,NA

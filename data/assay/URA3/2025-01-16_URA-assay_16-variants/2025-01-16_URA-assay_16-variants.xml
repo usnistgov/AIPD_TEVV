@@ -1,0 +1,324 @@
+<metadata source="NIST LMSF">
+  <project>
+    <projectId>GSF-IMS-Yeast</projectId>
+    <experiment>
+      <experimentId>2025-01-16_URA-assay_16-variants</experimentId>
+      <protocol type="fitness selection" source="LMSF Scheduler">
+        <scriptFile>J:\Shared_Data\LMSF Queue\2025-01-16.URA\script_2025-01-16.lmsf</scriptFile>
+        <dateTime>
+          <year>2025</year>
+          <month>01</month>
+          <day>16</day>
+          <time status="protocol started">16:55:45</time>
+          <time status="protocol finished">07:45:18</time>
+        </dateTime>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Initialize Robot Carousel Sealer and Pealer.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="procedure started">16:55:45</time>
+            <time status="procedure finished">17:01:16</time>
+          </dateTime>
+        </overlordProcedure>
+        <users>
+          <user useKey="user">
+            <userId>DJR</userId>
+          </user>
+        </users>
+        <strains>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_WT-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_05-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_34-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_H3-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_A4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_B4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_C4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_D4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_E4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_F4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_G4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_H4-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_A5-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_B5-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_C5-A</plasmidId>
+          </strain>
+          <strain>
+            <strainId> SY992</strainId>
+            <plasmidId> URA3_D5-A</plasmidId>
+          </strain>
+        </strains>
+        <media>
+          <medium>
+            <mediaId>SD-Trp</mediaId>
+          </medium>
+          <medium>
+            <mediaId>SD-Trp-Ura</mediaId>
+          </medium>
+          <medium>
+            <mediaId>SG-Trp</mediaId>
+          </medium>
+          <medium>
+            <mediaId>SG-Trp-Ura</mediaId>
+          </medium>
+        </media>
+        <notes>
+          <note>pre-robot cultures started at 5:03 pm yesterday</note>
+        </notes>
+        <hamiltonMethod>
+          <methodFile>C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\Pre-run lid test.12.hsl</methodFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="method started">16:58:53</time>
+            <time status="method finished">17:00:01</time>
+          </dateTime>
+        </hamiltonMethod>
+        <hamiltonMethod>
+          <methodFile>C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Turn on pre-heat HHC.hsl</methodFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="method started">17:00:05</time>
+            <time status="method finished">17:01:13</time>
+          </dateTime>
+        </hamiltonMethod>
+        <Gen5Experiment>
+          <protocolFile>\\129.6.167.34\Protocols\Growth Plate w Membrane short test.30C.prt</protocolFile>
+          <dataFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\pre-run-test_Epoch2.xpt</dataFile>
+          <exportFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\pre-run-test_Epoch2.txt</exportFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="experiment started">17:01:30</time>
+          </dateTime>
+        </Gen5Experiment>
+        <hamiltonMethod>
+          <methodFile>C:\Program Files (x86)\Hamilton\Methods\Common\Tip Handling\With 96-Head\Edit Tip Counters.hsl</methodFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="method started">17:01:36</time>
+            <time status="method finished">17:02:14</time>
+          </dateTime>
+        </hamiltonMethod>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move Tips and New Growth Plate to STAR.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="procedure started">17:02:24</time>
+            <time status="procedure finished">17:03:51</time>
+          </dateTime>
+          <parameters>
+            <Carousel.Stack.7.Labware.Count>2</Carousel.Stack.7.Labware.Count>
+          </parameters>
+        </overlordProcedure>
+        <hamiltonMethod>
+          <methodFile>C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\URA fitness.16 variants.plate 1.hsl</methodFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="method started">17:03:52</time>
+            <time status="method finished">17:21:44</time>
+          </dateTime>
+        </hamiltonMethod>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from STAR to Reader No Seal.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="procedure started">17:21:50</time>
+            <time status="procedure finished">17:22:31</time>
+          </dateTime>
+          <parameters>
+            <Gen5.Reader.Name>"Epoch2"</Gen5.Reader.Name>
+          </parameters>
+        </overlordProcedure>
+        <Gen5Experiment>
+          <protocolFile>\\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane single read.30C.1C.prt</protocolFile>
+          <dataFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\2025-01-16_URA-assay_16-variants_single-read_1-0_Epoch2.xpt</dataFile>
+          <exportFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\2025-01-16_URA-assay_16-variants_single-read_1-0_Epoch2.txt</exportFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="experiment started">17:22:32</time>
+            <time status="experiment finished">17:24:41</time>
+          </dateTime>
+        </Gen5Experiment>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from Reader to Reader and Seal.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="procedure started">17:24:47</time>
+            <time status="procedure finished">17:26:18</time>
+          </dateTime>
+          <parameters>
+            <Gen5.Reader.Name>"Epoch2"</Gen5.Reader.Name>
+            <Gen5.Reader2.Name>"Epoch2"</Gen5.Reader2.Name>
+          </parameters>
+        </overlordProcedure>
+        <Gen5Experiment>
+          <protocolFile>\\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 14h.30C.1C.prt</protocolFile>
+          <dataFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\2025-01-16_URA-assay_16-variants_growth-plate_1-1_Epoch2.xpt</dataFile>
+          <exportFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\2025-01-16_URA-assay_16-variants_growth-plate_1-1_Epoch2.txt</exportFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="experiment started">17:26:19</time>
+            <time status="experiment finished">07:38:22</time>
+          </dateTime>
+        </Gen5Experiment>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move Tips and New Growth Plate to STAR.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>16</day>
+            <time status="procedure started">17:29:02</time>
+            <time status="procedure finished">17:31:16</time>
+          </dateTime>
+          <parameters>
+            <Carousel.Stack.7.Labware.Count>1</Carousel.Stack.7.Labware.Count>
+            <STAR.Plate.Handling.Labware.Name>"Tips300"</STAR.Plate.Handling.Labware.Name>
+            <STAR.Tip.300.Index>1</STAR.Tip.300.Index>
+          </parameters>
+        </overlordProcedure>
+        <hamiltonMethod>
+          <methodFile>C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\URA fitness.16 variants.plate 2.hsl</methodFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>17</day>
+            <time status="method started">06:20:08</time>
+            <time status="method finished">06:33:44</time>
+          </dateTime>
+        </hamiltonMethod>
+        <hamiltonMethod>
+          <methodFile>C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Pre-heat growth plate.hsl</methodFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>17</day>
+            <time status="method started">07:27:04</time>
+            <time status="method finished">07:38:21</time>
+          </dateTime>
+        </hamiltonMethod>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from Reader to STAR.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>17</day>
+            <time status="procedure started">07:38:28</time>
+            <time status="procedure finished">07:39:54</time>
+          </dateTime>
+          <parameters>
+            <Gen5.Reader.Name>"Epoch2"</Gen5.Reader.Name>
+          </parameters>
+        </overlordProcedure>
+        <hamiltonMethod>
+          <methodFile>C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Dilute-copy plate x-fold with 96-head.hsl</methodFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>17</day>
+            <time status="method started">07:40:00</time>
+            <time status="method finished">07:43:45</time>
+          </dateTime>
+        </hamiltonMethod>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from STAR to Reader.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>17</day>
+            <time status="procedure started">07:43:51</time>
+            <time status="procedure finished">07:45:10</time>
+          </dateTime>
+          <parameters>
+            <Gen5.Reader.Name>"Epoch2"</Gen5.Reader.Name>
+            <Sealer.ManualSeal>"No"</Sealer.ManualSeal>
+          </parameters>
+        </overlordProcedure>
+        <Gen5Experiment>
+          <protocolFile>\\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 48h.30C.1C.no shake.prt</protocolFile>
+          <dataFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\2025-01-16_URA-assay_16-variants_growth-plate_1-2_Epoch2.xpt</dataFile>
+          <exportFile>C:\Shared Files\Data\GSF-IMS-Yeast\2025-01-16_URA-assay_16-variants\2025-01-16_URA-assay_16-variants_growth-plate_1-2_Epoch2.txt</exportFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>17</day>
+            <time status="experiment started">07:45:10</time>
+          </dateTime>
+        </Gen5Experiment>
+        <overlordProcedure>
+          <procedureFile>C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Sealer Heater Off.ovp</procedureFile>
+          <dateTime>
+            <year>2025</year>
+            <month>01</month>
+            <day>17</day>
+            <time status="procedure started">07:45:11</time>
+            <time status="procedure finished">07:45:18</time>
+          </dateTime>
+        </overlordProcedure>
+      </protocol>
+    </experiment>
+  </project>
+</metadata>

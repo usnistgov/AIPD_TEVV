@@ -1,0 +1,101 @@
+query_sequence,top_match,e_value
+ura3_72_M1,emb|SCV04999.1| LANO_0G16270g1_1 [Lachancea nothofagi CBS 11611],1.9063e-18
+ura3_29_M1,ref|XP_045535659.1| uridine 5'-monophosphate synthase [Papilio machaon],4.62272e-90
+ura3_26_M1,emb|CAB1449281.1| unnamed protein product [Pleuronectes platessa],3.33912e-90
+ura3_7,emb|CAD6622128.1| XXYS1_4_G0003340.mRNA.1.CDS.1 [Saccharomyces cerevisiae],2.99712e-129
+ura3_15,ref|XP_022465815.1| orotidine-5'-phosphate decarboxylase [Huiozyma naganishii CBS 8797] >sp|Q9Y726.1| RecName: Full=Orotidine 5'-phosphate decarboxylase; AltName: Full=OMP decarboxylase; Short=OMPDCase; Short=OMPdecase; AltName: Full=Uridine 5'-monophosphate synthase; Short=UMP synthase [Maudiozyma exigua] >dbj|BAA76736.1| orotidine-5'-phosphate decarboxylase [Huiozyma naganishii] >emb|CCK71570.1| hypothetical protein KNAG_0H01560 [Huiozyma naganishii CBS 8797],3.00306e-102
+ura3_27,ref|XP_049340946.1| uridine 5'-monophosphate synthase [Astyanax mexicanus] >ref|XP_049340947.1| uridine 5'-monophosphate synthase [Astyanax mexicanus],1.03661e-85
+ura3_43,ref|XP_019017989.1| hypothetical protein PICMEDRAFT_72906 [Pichia membranifaciens NRRL Y-2026] >gb|ODQ46876.1| hypothetical protein PICMEDRAFT_72906 [Pichia membranifaciens NRRL Y-2026],4.79651e-60
+ura3_55,gb|EJS44107.1| ura3p [Saccharomyces arboricola H-6],6.88303e-19
+ura3_63,gb|MBN2461395.1| orotate phosphoribosyltransferase [Candidatus Cloacimonadota bacterium],0.418392
+ura3_71,gb|KAG0655378.1| orotidine 5'-phosphate decarboxylase [Maudiozyma exigua],5.30308e-19
+ura3_80,NA,NA
+ura3_88,NA,NA
+ura3_47_M1,dbj|BAC20169.1| orotidine-5'-phosphate decarboxylase [Millerozyma farinosa],2.0664e-45
+ura3_30_M1,emb|SCW02670.1| LAFE_0F11738g1_1 [Lachancea fermentati],1.13667e-82
+ura3_0,emb|CAD6622128.1| XXYS1_4_G0003340.mRNA.1.CDS.1 [Saccharomyces cerevisiae],2.17679e-136
+ura3_8,dbj|GHM90110.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae] >emb|CAI6461448.1| CMF_HP2_G0014090.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6470207.1| CMF_HP1_G0014560.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7265725.1| CMF_collapsed_G0015770.mRNA.1.CDS.1 [Saccharomyces cerevisiae],6.78493e-122
+ura3_16,ref|XP_064761013.1| orotidine-5'-phosphate decarboxylase [Scheffersomyces coipomensis] >gb|KAK6461656.1| orotidine-5'-phosphate decarboxylase [Scheffersomyces coipomensis],6.10302e-102
+ura3_28,emb|CAI4944458.1| CFC_HP_G0059700.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI4951621.1| CFC_HP_G0064940.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6565978.1| CFC_HP_G0059700.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6614320.1| CFC_HP_G0064940.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7253598.1| CFC_collapsed_G0014350.mRNA.1.CDS.1 [Saccharomyces cerevisiae],6.22018e-88
+ura3_44,gb|XBW37801.1| hypothetical protein QEN19_003378 [Hanseniaspora menglaensis],2.17285e-61
+ura3_56,gb|KAG0679187.1| orotidine 5'-phosphate decarboxylase [Kluyveromyces marxianus] >gb|KAG0685086.1| orotidine 5'-phosphate decarboxylase [Kluyveromyces marxianus],4.49109e-21
+ura3_64,gb|KAG0655378.1| orotidine 5'-phosphate decarboxylase [Maudiozyma exigua],2.7536e-18
+ura3_73,ref|XP_033765792.1| orotidine-5'-phosphate decarboxylase [Saccharomyces paradoxus] >gb|QHS72760.1| Ura3 [Saccharomyces paradoxus],1.44675e-20
+ura3_81,emb|SCV04999.1| LANO_0G16270g1_1 [Lachancea nothofagi CBS 11611],1.29071e-14
+ura3_89,gb|KAK3717004.1| orotidine 5'-phosphate decarboxylase [Vermiconidia calcicola],0.18411
+ura3_48_M1,sp|P78724.1| RecName: Full=Orotidine 5'-phosphate decarboxylase; AltName: Full=OMP decarboxylase; Short=OMPDCase; Short=OMPdecase; AltName: Full=Uridine 5'-monophosphate synthase; Short=UMP synthase [Wickerhamomyces anomalus NRRL Y-366] >emb|CAA70421.1| orotidine-5'-phosphate decarboxylase [Wickerhamomyces anomalus],1.57902e-45
+ura3_31_M1,ref|XP_029320804.1| uncharacterized protein C5L36_0B05730 [Pichia kudriavzevii] >sp|Q6IUR4.1| RecName: Full=Orotidine 5'-phosphate decarboxylase; AltName: Full=OMP decarboxylase; Short=OMPDCase; Short=OMPdecase; AltName: Full=Uridine 5'-monophosphate synthase; Short=UMP synthase [Pichia kudriavzevii] >gb|QSG73538.1| Ura3 [Cloning vector pWSPK-Cas9] >gb|AAT39474.1| orotidine-5'-monophosphate decarboxylase [Pichia kudriavzevii] >gb|AWU75327.1| hypothetical protein C5L36_0B05730 [Pichia kudriavzevii] >gb|KGK39727.1| hypothetical protein JL09_g1026 [Pichia kudriavzevii] >gb|OUT21549.1| orotidine 5'-phosphate decarboxylase [Pichia kudriavzevii],2.88776e-73
+ura3_1,emb|CAD6622128.1| XXYS1_4_G0003340.mRNA.1.CDS.1 [Saccharomyces cerevisiae],3.945e-133
+ura3_9,dbj|GHM90110.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae] >emb|CAI6461448.1| CMF_HP2_G0014090.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6470207.1| CMF_HP1_G0014560.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7265725.1| CMF_collapsed_G0015770.mRNA.1.CDS.1 [Saccharomyces cerevisiae],1.15288e-115
+ura3_17,ref|XP_020061918.1| orotidine-5'-phosphate decarboxylase [Suhomyces tanzawaensis NRRL Y-17324] >gb|ODV76796.1| orotidine-5'-phosphate decarboxylase [Suhomyces tanzawaensis NRRL Y-17324],2.4621e-98
+ura3_34,emb|SCU99172.1| LADA_0H18008g1_1 [Lachancea dasiensis],4.28516e-78
+ura3_45,gb|OGT60575.1| MAG: orotidine 5'-phosphate decarboxylase [Gammaproteobacteria bacterium RIFCSPHIGHO2_12_FULL_45_12],6.56995e-58
+ura3_57,emb|CDO95120.1| unnamed protein product [Kluyveromyces dobzhanskii CBS 2104],2.92659e-19
+ura3_65,gb|WJX87251.1| Uridine 5'-monophosphate synthase [Trifolium repens],0.0244548
+ura3_74,ref|XP_018222653.1| orotidine-5'-phosphate decarboxylase [Saccharomyces eubayanus] >gb|QID84527.1| orotidine 5'-phosphate decarboxylase [Saccharomyces pastorianus] >gb|KOG99935.1| URA3-like protein [Saccharomyces eubayanus] >emb|CAI1945211.1| hypothetical protein SEUBUCD650_0E00740 [Saccharomyces eubayanus] >emb|CAI1974505.1| hypothetical protein SEUBUCD646_0E00700 [Saccharomyces eubayanus] >dbj|BAI82233.1| orotidine-5'-phosphate decarboxylase [Saccharomyces pastorianus],1.02554e-16
+ura3_82,emb|CAI7112224.1| BAF_collapsed_G0014430.mRNA.1.CDS.1 [Saccharomyces cerevisiae],4.00602e-17
+ura3_90,gb|RLD49595.1| MAG: orotidine 5'-phosphate decarboxylase [Bacteroidota bacterium],2.9854
+ura3_49_M1,gb|KAF7278683.1| hypothetical protein GWI33_008131 [Rhynchophorus ferrugineus],5.01547e-15
+ura3_32_M1,emb|SCW02670.1| LAFE_0F11738g1_1 [Lachancea fermentati],1.16172e-82
+ura3_2,dbj|GHM90110.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae] >emb|CAI6461448.1| CMF_HP2_G0014090.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6470207.1| CMF_HP1_G0014560.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7265725.1| CMF_collapsed_G0015770.mRNA.1.CDS.1 [Saccharomyces cerevisiae],8.14979e-134
+ura3_10,emb|CAD6622128.1| XXYS1_4_G0003340.mRNA.1.CDS.1 [Saccharomyces cerevisiae],6.49333e-115
+ura3_18,ref|XP_003677638.1| orotidine-5'-phosphate decarboxylase [Naumovozyma castellii] >emb|CCC71286.1| hypothetical protein NCAS_0G03990 [Naumovozyma castellii],3.45769e-98
+ura3_38,sp|Q9HFX0.1| RecName: Full=Orotidine 5'-phosphate decarboxylase; AltName: Full=OMP decarboxylase; Short=OMPDCase; Short=OMPdecase; AltName: Full=Uridine 5'-monophosphate synthase; Short=UMP synthase [Zygosaccharomyces bailii] >gb|AAG17694.1| orotidine-5'-phosphate decarboxylase [Zygosaccharomyces bailii] >emb|CDF90219.1| ZYBA0S06-03488g1_1 [Zygosaccharomyces bailii CLIB 213] >emb|CDH11557.1| Orotidine 5'-phosphate decarboxylase [Zygosaccharomyces bailii ISA1307],1.10537e-77
+ura3_46,ref|XP_066795822.1| Orotidine 5'-phosphate decarboxylase domain-containing protein [Lipomyces doorenjongii] >gb|KAK9492897.1| Orotidine 5'-phosphate decarboxylase domain-containing protein [Lipomyces doorenjongii],5.78375e-37
+ura3_58,emb|SCV04999.1| LANO_0G16270g1_1 [Lachancea nothofagi CBS 11611],5.5121e-15
+ura3_66,ref|XP_033765792.1| orotidine-5'-phosphate decarboxylase [Saccharomyces paradoxus] >gb|QHS72760.1| Ura3 [Saccharomyces paradoxus],1.21755e-19
+ura3_75,gb|AJU49098.1| Ura3p [Saccharomyces cerevisiae YJM1383] >gb|AJU49606.1| Ura3p [Saccharomyces cerevisiae YJM1386] >gb|AJV33042.1| Ura3p [Saccharomyces cerevisiae YJM193] >gb|KZV11722.1| URA3 [Saccharomyces cerevisiae] >emb|CAI4403405.1| BCN_G0014650.mRNA.1.CDS.1 [Saccharomyces cerevisiae],1.39016e-15
+ura3_83,NA,NA
+ura3_91,gb|OGT60670.1| MAG: orotidine 5'-phosphate decarboxylase [Gammaproteobacteria bacterium RIFCSPHIGHO2_12_FULL_43_28],0.0192123
+ura3_50_M1,ref|XP_056081560.1| orotidine-5'-phosphate decarboxylase [Saccharomyces mikatae IFO 1815] >emb|CAI4038445.1| hypothetical protein SMKI_05G0550 [Saccharomyces mikatae IFO 1815],6.91687e-29
+ura3_33_M1,emb|SCU98197.1| LAFA_0G16248g1_1 [Lachancea sp. 'fantastica'],2.74301e-71
+ura3_3,dbj|GHM90110.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae] >emb|CAI6461448.1| CMF_HP2_G0014090.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6470207.1| CMF_HP1_G0014560.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7265725.1| CMF_collapsed_G0015770.mRNA.1.CDS.1 [Saccharomyces cerevisiae],2.18174e-129
+ura3_11,emb|CAD6622128.1| XXYS1_4_G0003340.mRNA.1.CDS.1 [Saccharomyces cerevisiae],2.13954e-114
+ura3_19,emb|CAD6622128.1| XXYS1_4_G0003340.mRNA.1.CDS.1 [Saccharomyces cerevisiae],4.05303e-100
+ura3_39,gb|PIY95553.1| MAG: orotidine-5'-phosphate decarboxylase [Candidatus Kerfeldbacteria bacterium CG_4_10_14_0_8_um_filter_42_10],8.38412e-62
+ura3_51,dbj|BDT06277.1| orotidine-5'-phosphate decarboxylase Ura3 [Expression vector YHp22601] >dbj|BDT26484.1| orotidine-5'-phosphate decarboxylase Ura3 [Expression vector YHp26352],1.29674e-21
+ura3_59,ref|XP_056081560.1| orotidine-5'-phosphate decarboxylase [Saccharomyces mikatae IFO 1815] >emb|CAI4038445.1| hypothetical protein SMKI_05G0550 [Saccharomyces mikatae IFO 1815],6.49272e-15
+ura3_67,gb|QEU61253.1| Ura3 [Kluyveromyces lactis],1.33482e-15
+ura3_76,NA,NA
+ura3_84,NA,NA
+ura3_92,emb|CDO95120.1| unnamed protein product [Kluyveromyces dobzhanskii CBS 2104],0.00155589
+ura3_35_M1,emb|SCU99172.1| LADA_0H18008g1_1 [Lachancea dasiensis],1.87677e-82
+ura3_23_M1,gb|AJU49098.1| Ura3p [Saccharomyces cerevisiae YJM1383] >gb|AJU49606.1| Ura3p [Saccharomyces cerevisiae YJM1386] >gb|AJV33042.1| Ura3p [Saccharomyces cerevisiae YJM193] >gb|KZV11722.1| URA3 [Saccharomyces cerevisiae] >emb|CAI4403405.1| BCN_G0014650.mRNA.1.CDS.1 [Saccharomyces cerevisiae],2.58012e-97
+ura3_4,dbj|GHM90110.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae] >emb|CAI6461448.1| CMF_HP2_G0014090.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6470207.1| CMF_HP1_G0014560.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7265725.1| CMF_collapsed_G0015770.mRNA.1.CDS.1 [Saccharomyces cerevisiae],6.80163e-132
+ura3_12,dbj|GHM90110.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae] >emb|CAI6461448.1| CMF_HP2_G0014090.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6470207.1| CMF_HP1_G0014560.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7265725.1| CMF_collapsed_G0015770.mRNA.1.CDS.1 [Saccharomyces cerevisiae],5.59404e-118
+ura3_20,ref|XP_064761013.1| orotidine-5'-phosphate decarboxylase [Scheffersomyces coipomensis] >gb|KAK6461656.1| orotidine-5'-phosphate decarboxylase [Scheffersomyces coipomensis],3.62664e-96
+ura3_40,gb|OWK74209.1| orotidine 5'-phosphate decarboxylase [Flavobacteriaceae bacterium JJC],1.31009e-61
+ura3_52,ref|XP_022674242.1| orotidine-5'-phosphate decarboxylase [Kluyveromyces marxianus DMKU3-1042] >sp|P41769.1| RecName: Full=Orotidine 5'-phosphate decarboxylase; AltName: Full=OMP decarboxylase; Short=OMPDCase; Short=OMPdecase; AltName: Full=Uridine 5'-monophosphate synthase; Short=UMP synthase [Kluyveromyces marxianus] >gb|ABB69700.1| orotidine-5'-phosphate decarboxylase [Kluyveromyces marxianus] >gb|AOP17589.1| orotidine-5'-phosphate decarboxylase [Kluyveromyces marxianus] >gb|QGN13471.1| Orotidine 5-phosphate decarboxylase [Kluyveromyces marxianus] >emb|CAA79928.1| URA3 [Kluyveromyces marxianus] >dbj|BAO38353.1| orotidine 5'-phosphate decarboxylase [Kluyveromyces marxianus DMKU3-1042],1.56176e-22
+ura3_60,ref|XP_003677638.1| orotidine-5'-phosphate decarboxylase [Naumovozyma castellii] >emb|CCC71286.1| hypothetical protein NCAS_0G03990 [Naumovozyma castellii],3.44554e-22
+ura3_68,ref|XP_056087197.1| orotidine-5'-phosphate decarboxylase [Saccharomyces kudriavzevii IFO 1802] >gb|EJT41855.1| URA3-like protein [Saccharomyces kudriavzevii IFO 1802] >emb|CAI4059903.1| hypothetical protein SKDI_05G0470 [Saccharomyces kudriavzevii IFO 1802],1.43622e-19
+ura3_77,gb|MCF8531851.1| methylmalonyl-CoA carboxyltransferase [Reyranella sp.],0.61098
+ura3_85,gb|TVS08297.1| MAG: hypothetical protein EA417_23040 [Gammaproteobacteria bacterium],2.57158
+ura3_93,ref|WP_149245606.1| orotidine-5'-phosphate decarboxylase [Chryseobacterium sp. SN22] >gb|KAA0130513.1| orotate phosphoribosyltransferase [Chryseobacterium sp. SN22],5.27767
+ura3_36_M1,sp|Q12604.1| RecName: Full=Orotidine 5'-phosphate decarboxylase; AltName: Full=OMP decarboxylase; Short=OMPDCase; Short=OMPdecase; AltName: Full=Uridine 5'-monophosphate synthase; Short=UMP synthase [Magnusiomyces magnusii] >emb|CAA65135.1| orotidine 5' phosphate decarboxylase [Magnusiomyces magnusii],1.56202e-81
+ura3_24_M1,gb|KAK1789115.1| hypothetical protein P4O66_015062 [Electrophorus voltai],4.36393e-95
+ura3_5,dbj|GFP68107.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae] >dbj|GFP73067.1| orotidine 5'-phosphate decarboxylase [Saccharomyces cerevisiae],2.84644e-130
+ura3_13,emb|CAH2352566.1| orotidine 5'-phosphate decarboxylase [[Candida] railenensis],3.70329e-111
+ura3_21,ref|XP_056081560.1| orotidine-5'-phosphate decarboxylase [Saccharomyces mikatae IFO 1815] >emb|CAI4038445.1| hypothetical protein SMKI_05G0550 [Saccharomyces mikatae IFO 1815],7.47299e-100
+ura3_41,gb|MFH1426699.1| orotidine-5'-phosphate decarboxylase [Candidatus Kerfeldbacteria bacterium],1.11715e-59
+ura3_53,ref|XP_068758460.1| uridine 5'-monophosphate synthase-like [Montipora capricornis],2.61973e-21
+ura3_61,gb|AGE89246.1| orotidine-5'-phosphate decarboxylase [Schwanniomyces occidentalis] >dbj|BAV32324.1| orotidine-5'-phosphate decarboxylase [Schwanniomyces occidentalis var. occidentalis],1.04976e-14
+ura3_69,ref|XP_056087197.1| orotidine-5'-phosphate decarboxylase [Saccharomyces kudriavzevii IFO 1802] >gb|EJT41855.1| URA3-like protein [Saccharomyces kudriavzevii IFO 1802] >emb|CAI4059903.1| hypothetical protein SKDI_05G0470 [Saccharomyces kudriavzevii IFO 1802],6.85584e-23
+ura3_78,NA,NA
+ura3_86,NA,NA
+ura3_94,gb|MCF6367177.1| orotidine-5'-phosphate decarboxylase [Bacteroidales bacterium],5.95788
+ura3_37_M1,"emb|CAH0719549.1| unnamed protein product, partial [Brenthis ino]",3.82927e-65
+ura3_25_M1,gb|MDF2691546.1| pyrF [Gammaproteobacteria bacterium],1.2592e-94
+ura3_6,ref|XP_056081560.1| orotidine-5'-phosphate decarboxylase [Saccharomyces mikatae IFO 1815] >emb|CAI4038445.1| hypothetical protein SMKI_05G0550 [Saccharomyces mikatae IFO 1815],8.17956e-128
+ura3_14,emb|CAH2352566.1| orotidine 5'-phosphate decarboxylase [[Candida] railenensis],3.68309e-105
+ura3_22,ref|XP_056081560.1| orotidine-5'-phosphate decarboxylase [Saccharomyces mikatae IFO 1815] >emb|CAI4038445.1| hypothetical protein SMKI_05G0550 [Saccharomyces mikatae IFO 1815],1.08118e-106
+ura3_42,ref|XP_051619975.1| URA3 [Candida jiufengensis] >gb|KAI5953233.1| URA3 [Candida jiufengensis],2.30227e-66
+ura3_54,emb|CAI4944458.1| CFC_HP_G0059700.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI4951621.1| CFC_HP_G0064940.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6565978.1| CFC_HP_G0059700.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6614320.1| CFC_HP_G0064940.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI7253598.1| CFC_collapsed_G0014350.mRNA.1.CDS.1 [Saccharomyces cerevisiae],1.81687e-20
+ura3_62,emb|CAI5072685.1| CRE_HP_G0117940.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI5157952.1| CRE_HP_G0145160.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6964968.1| CRE_HP_G0117940.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI6993079.1| CRE_HP_G0145160.mRNA.1.CDS.1 [Saccharomyces cerevisiae],1.05522e-14
+ura3_70,emb|SCU99172.1| LADA_0H18008g1_1 [Lachancea dasiensis],1.18522e-19
+ura3_79,emb|CDO95120.1| unnamed protein product [Kluyveromyces dobzhanskii CBS 2104],3.87467e-25
+ura3_87,gb|AJU50614.1| Ura3p [Saccharomyces cerevisiae YJM1399] >emb|CAI4403622.1| CPI_1c_G0014250.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI4414414.1| BBM_1a_G0014170.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI4416540.1| ADE_G0014090.mRNA.1.CDS.1 [Saccharomyces cerevisiae] >emb|CAI4418990.1| CDN_1a_G0014280.mRNA.1.CDS.1 [Saccharomyces cerevisiae],1.32878e-11
+ura3_95,NA,NA
+ura3_96,gb|KAK3171566.1| hypothetical protein OEA41_003650 [Lepraria neglecta],0.0555266
+ura3_97,NA,NA
+ura3_98,NA,NA
+ura3_99,ref|XP_031549189.1| UHRF1-binding protein 1-like isoform X2 [Actinia tenebrosa],0.0491333

@@ -1,0 +1,1015 @@
+//Input Script: J:\Shared_Data\LMSF Queue\2025-03-18.URA\script_2025-03-18.lmsf
+// This script needs remote connections to Epoch1, and S-Cell-STAR
+#ReadScript(GSF-IMS Project\Yeast\URA fitness assay\URA_fitness_N_variants.lmsf, sub_project = URA, queueDirectory = J:\Shared_Data\LMSF Queue\2025-03-18.URA, num_ura_variants = 16, reader1 = Epoch1)
+Set(sub_project, notAssigned)
+
+Set(queueDirectory, notAssigned)
+
+// Three conditions for 16-variant experiment:
+//     100% SG-Trp-Ura (test), media_4
+//     100% SG-Trp (positive control), media_3
+//     100% SD-Trp-Ura (negative control), media_2
+//     and SD-Trp, media_1 is used for plate 1.
+Set(media_1, SD-Trp)
+
+Set(media_2, SD-Trp-Ura)
+
+Set(media_3, SG-Trp)
+
+Set(media_4, SG-Trp-Ura)
+
+Set(media_2_1_fraction, 0.75)
+
+Set(media_2_2_fraction, 0.9)
+
+Set(media_3_1_fraction, 0.9)
+
+Set(media_3_2_fraction, 0.95)
+
+//Set readers to be used
+Set(reader1, Epoch1)
+
+Set(pipettingCushionTime, 2400)
+
+// Options for num_ura_variants: 6, 12, 16
+Set(num_ura_variants, 12)
+
+// Max fraction of media_2 that gets mixed with media_4 in dilution gradient for plate 2:
+Set(max_media_2_fraction, 0.05)
+
+#InsertVariables
+Set(sub_project, URA)
+
+Set(queueDirectory, J:\Shared_Data\LMSF Queue\2025-03-18.URA)
+
+Set(num_ura_variants, 16)
+
+Set(reader1, Epoch1)
+
+#End InsertVariables
+// media_3 not used for 12-variant experiment
+If({num_ura_variants} == 12, Set(media_3, none))
+//If(16 == 12, Set(media_3, none))
+
+//isPipetting is a variable passed to the Hamilton Venus method; if isPipetting is true, the STAR will pipette liquids; otherwise the STAR just moves plates around
+Set(isPipetting, true)
+
+//isDebugging controls whether or not user debugging prompts/messages are displayed (both in LMSF and Hamilton)
+Set(isDebugging, false)
+
+//manualSeal controls whether sealing is manual or automatic
+//Set(manualSeal, Yes)
+Set(manualSeal, No)
+
+/////////////////////////////////////////////////////////////////
+//Read in commonly used directories
+#ReadScript(Common protocol scripts\Set Common Directories.lmsf)
+//Directories where .hsl, .prt, and .opv files are to be found:
+Set(hamiltonTipDir, C:\Program Files (x86)\Hamilton\Methods\Common\Tip Handling\With 96-Head)
+
+Set(ovpCommDirectory, C:\Program Files (x86)\PAA\Overlord3\Procedures\Common)
+
+Set(lmsfCommDirectory, Common protocol scripts)
+
+Set(lmsfImageDirectory, Image files)
+
+Set(gen5ProtDir, \\129.6.167.34\Protocols)
+
+#End ReadScript(Common protocol scripts\Set Common Directories.lmsf)
+Set(hamiltonMethodDir, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay)
+
+Set(hamiltonSharedMethodDir, C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy)
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+//Set directories for  .hsl, .opv, and .prt files that are specific to this experiment
+// Overlord protocols are the same as for the last version
+Set(ovpDirectory, C:\Program Files (x86)\PAA\Overlord3\Procedures\GSF-IMS\E. coli\Fitness Selection 1)
+
+Set(scriptDir, GSF-IMS Project\Yeast\URA fitness assay)
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+//Hamilton Venus Methods, in the order that they get run
+Set(lidTestMethod, {hamiltonMethodDir}\Pre-run lid test.hsl)
+//Set(lidTestMethod, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\Pre-run lid test.hsl)
+
+If({num_ura_variants} == 12, Set(lidTestMethod, {hamiltonMethodDir}\Pre-run lid test.12.hsl))
+//If(16 == 12, Set(lidTestMethod, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\Pre-run lid test.12.hsl))
+
+If({num_ura_variants} == 16, Set(lidTestMethod, {hamiltonMethodDir}\Pre-run lid test.12.hsl))
+//If(16 == 16, Set(lidTestMethod, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\Pre-run lid test.12.hsl))
+
+Set(initHHCMethod, {hamiltonSharedMethodDir}\Turn on pre-heat HHC.hsl)
+//Set(initHHCMethod, C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Turn on pre-heat HHC.hsl)
+
+Set(plate_1_Method, {hamiltonMethodDir}\URA fitness.{num_ura_variants} variants.plate 1.hsl)
+//Set(plate_1_Method, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\URA fitness.16 variants.plate 1.hsl)
+
+Set(plate_1_MethodTime, 950)
+
+Set(plate_2_Method, {hamiltonMethodDir}\URA fitness.{num_ura_variants} variants.plate 2.hsl)
+//Set(plate_2_Method, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\URA fitness.16 variants.plate 2.hsl)
+
+Set(plate_2_MethodTime, 1980)
+
+If({num_ura_variants} == 12, Set(plate_2_MethodTime, 1400))
+//If(16 == 12, Set(plate_2_MethodTime, 1400))
+
+If({num_ura_variants} == 16, Set(plate_2_MethodTime, 600))
+//If(16 == 16, Set(plate_2_MethodTime, 600))
+
+Set(preHeatPlateMethod, {hamiltonSharedMethodDir}\Pre-heat growth plate.hsl)
+//Set(preHeatPlateMethod, C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Pre-heat growth plate.hsl)
+
+//Plate pre-heating method takes 12m:16s to run
+//New version of Plate pre-heating method takes 11 minutes to run - leaves HHC on all the time
+Set(preHeatPlateTime, 660)
+
+// Subtract 2 minutes (i.e., start preheat 2 minutes later) for single read
+Math(preHeatPlateTime, {preHeatPlateTime} - 120)
+//Math(preHeatPlateTime, 660 - 120)
+
+Set(copyPlateMethod, {hamiltonSharedMethodDir}\Dilute-copy plate x-fold with 96-head.hsl)
+//Set(copyPlateMethod, C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Dilute-copy plate x-fold with 96-head.hsl)
+
+//Venus method constrains 200<=cultureVolume<=500
+Set(cultureVolume, 500)
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+//Gen5 protocols to be run and associated timers:
+Set(plate1Protocol, {gen5ProtDir}\GSF-IMS-Yeast\Growth Plate w Membrane 14h.30C.1C.prt)
+//Set(plate1Protocol, \\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 14h.30C.1C.prt)
+
+//overNightProtocolTime = nominal run time + 600
+Set(plate1ProtocolTime, 51000)
+
+Set(plate2Protocol, {gen5ProtDir}\GSF-IMS-Yeast\Growth Plate w Membrane 72h.30C.1C.no shake.prt)
+//Set(plate2Protocol, \\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 72h.30C.1C.no shake.prt)
+
+//protocol time = nominal run time + 600
+Set(plate2ProtocolTime, 259800)
+
+Set(singleReadProtocol, {gen5ProtDir}\GSF-IMS-Yeast\Growth Plate w Membrane single read.30C.1C.prt)
+//Set(singleReadProtocol, \\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane single read.30C.1C.prt)
+
+Set(singleReadProtocolTime, 68)
+
+//Gen5 protocol for testing readers at beginning of run to give consistent starting state
+Set(initProtocol, {gen5ProtDir}\Growth Plate w Membrane short test.30C.prt)
+//Set(initProtocol, \\129.6.167.34\Protocols\Growth Plate w Membrane short test.30C.prt)
+
+/////////////////////////////////////////////////////////////////
+//--- Scipt for initial steps that don't change -----------------------------------------------------------------------------
+#ReadScript(GSF-IMS Project\Yeast\URA fitness assay\URA fitness.init experiment.lmsf)
+//Sub-script for initialization steps of experiment that never change...
+/////////////////////////////////////
+//This section sets shorter Gen5 protocols for testing, set isTesting to false for actual experiment
+Set(isTesting, false)
+
+//GetUserYesNo(isTesting, Testing?, Is this a test run (short Gen5 protocols)?)
+Set(isTesting, No)
+
+If({isTesting}!=Yes, UserPrompt(Re-Boot STAR, Turn off the power to the Hamilton STAR; wait 10 seconds and turn it back on; then click 'OK' to continue., {lmsfImageDirectory}\dialog-warning.png))
+//If(No!=Yes, UserPrompt(Re-Boot STAR, Turn off the power to the Hamilton STAR; wait 10 seconds and turn it back on; then click 'OK' to continue., Image files\dialog-warning.png))
+
+Set(testProtocol, {gen5ProtDir}\GSF-IMS-E-Coli\Growth Plate w Membrane 10m.37C.1C.prt)
+//Set(testProtocol, \\129.6.167.34\Protocols\GSF-IMS-E-Coli\Growth Plate w Membrane 10m.37C.1C.prt)
+
+If({isTesting}==Yes, Set(overNightProtocol, {gen5ProtDir}\GSF-IMS-E-Coli\Growth Plate w Membrane 10m.37C.1C.prt))
+//If(No==Yes, Set(overNightProtocol, \\129.6.167.34\Protocols\GSF-IMS-E-Coli\Growth Plate w Membrane 10m.37C.1C.prt))
+
+//overNightProtocolTime = nominal run time + 300
+If({isTesting}==Yes, Set(overNightProtocolTime, 2400))
+//If(No==Yes, Set(overNightProtocolTime, 2400))
+
+If({isTesting}==Yes, Set(repeatProtocol, {gen5ProtDir}\GSF-IMS-E-Coli\Growth Plate w Membrane 10m.37C.1C.prt))
+//If(No==Yes, Set(repeatProtocol, \\129.6.167.34\Protocols\GSF-IMS-E-Coli\Growth Plate w Membrane 10m.37C.1C.prt))
+
+//repeatProtocolTime = nominal run time + 300
+If({isTesting}==Yes, Set(repeatProtocolTime, 2100))
+//If(No==Yes, Set(repeatProtocolTime, 2100))
+
+/////////////////////////////////////////
+/////////////////////////////////////////
+//Set any other short-hand dictionary keys that will be used repeatedly
+Set(getNewGrowthPlate, {ovpCommDirectory}\Labware\Move Tips and New Growth Plate to STAR.ovp)
+//Set(getNewGrowthPlate, C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move Tips and New Growth Plate to STAR.ovp)
+
+Set(getNewTips, {ovpCommDirectory}\Labware\Move Tips from Carousel to STAR.ovp)
+//Set(getNewTips, C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move Tips from Carousel to STAR.ovp)
+
+Set(clearTipRackOvp, {ovpCommDirectory}\Labware\Move Tips from STAR to Waste.ovp)
+//Set(clearTipRackOvp, C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move Tips from STAR to Waste.ovp)
+
+Set(getNewSpinPlate, {ovpCommDirectory}\Labware\Move DWP from stack 9 to STAR.ovp)
+//Set(getNewSpinPlate, C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move DWP from stack 9 to STAR.ovp)
+
+Set(centrifugeSpinPlate, {ovpCommDirectory}\Get DWP from STAR then Centrifuge DWP.ovp)
+//Set(centrifugeSpinPlate, C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Get DWP from STAR then Centrifuge DWP.ovp)
+
+/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//User input and Overlord initialization section
+Set(listFile, {scriptDir}\URA fitness.{num_ura_variants} variants-list.txt)
+//Set(listFile, GSF-IMS Project\Yeast\URA fitness assay\URA fitness.16 variants-list.txt)
+
+StartPrompt(Yeast Fitness Selection, {listFile})
+//StartPrompt(Yeast Fitness Selection, GSF-IMS Project\Yeast\URA fitness assay\URA fitness.16 variants-list.txt)
+
+//UserPrompt(Check STAR Hamilton Run Control, Make sure that the Hamilton Run Control program on the STAR computer is NOT in simulation mode.)
+Set(tipsRequired1000, 112)
+
+If({num_ura_variants} == 12, Set(tipsRequired1000, 60))
+//If(16 == 12, Set(tipsRequired1000, 60))
+
+If({num_ura_variants} == 16, Set(tipsRequired1000, 72))
+//If(16 == 16, Set(tipsRequired1000, 72))
+
+UserPrompt(Check STAR Hamilton Tips, Make sure there are at least {tipsRequired1000} 1000 uL tips in the tip supports on the deck of the STAR., {lmsfImageDirectory}\Tip supports 1000.PNG)
+//UserPrompt(Check STAR Hamilton Tips, Make sure there are at least 72 1000 uL tips in the tip supports on the deck of the STAR., Image files\Tip supports 1000.PNG)
+
+Set(tipsRequired300, 88)
+
+If({num_ura_variants} == 12, Set(tipsRequired300, 20))
+//If(16 == 12, Set(tipsRequired300, 20))
+
+If({num_ura_variants} == 16, Set(tipsRequired300, 0))
+//If(16 == 16, Set(tipsRequired300, 0))
+
+If({tipsRequired300} > 0, UserPrompt(Check STAR Hamilton Tips, Make sure there are at least {tipsRequired300} 300 uL tips in the tip supports on the deck of the STAR., {lmsfImageDirectory}\Tip supports 300.PNG))
+//If(0 > 0, UserPrompt(Check STAR Hamilton Tips, Make sure there are at least 0 300 uL tips in the tip supports on the deck of the STAR., Image files\Tip supports 300.PNG))
+
+Set(msg2, Make sure there is at least one rack of 300 uL tips in the PAA Carousel (hotel no. 2).\n)
+
+UserPrompt(Tips, {msg2}, {lmsfImageDirectory}\Tip Hotel 2.png)
+//UserPrompt(Tips, Make sure there is at least one rack of 300 uL tips in the PAA Carousel (hotel no. 2).\n, Image files\Tip Hotel 2.png)
+
+Set(tips50Index, 0)
+
+Set(tips300Index, 1)
+
+Set(tips1000Index, 0)
+
+NewXML(fitness selection)
+
+Overlord({ovpCommDirectory}\Initialize Robot Carousel Sealer and Pealer.ovp)
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Initialize Robot Carousel Sealer and Pealer.ovp)
+
+Get(user, user)
+
+#End ReadScript(GSF-IMS Project\Yeast\URA fitness assay\URA fitness.init experiment.lmsf)
+// Get strain info from file
+If({queueDirectory}==notAssigned, Set(queueDirectory, {scriptDir}))
+//If(J:\Shared_Data\LMSF Queue\2025-03-18.URA==notAssigned, Set(queueDirectory, GSF-IMS Project\Yeast\URA fitness assay))
+
+Set(strain_info_file, strain_plasmids_{num_ura_variants}.txt)
+//Set(strain_info_file, strain_plasmids_16.txt)
+
+Set(msg1, Open the file {strain_info_file} from today's folder in the LMSF Queue: {queueDirectory}.\nThen, verify that it contains the appropriate information for this experiment.)
+//Set(msg1, Open the file strain_plasmids_16.txt from today's folder in the LMSF Queue: J:\Shared_Data\LMSF Queue\2025-03-18.URA.\nThen, verify that it contains the appropriate information for this experiment., verify that it contains the appropriate information for this experiment.)
+
+Set(msg2, One strain and {num_ura_variants} plasmids.)
+//Set(msg2, One strain and 16 plasmids.)
+
+Set(msg5, \n\nThe LMSF Queue is on the JCloud at: \\resdata-smb\JCloud2\Shared_Data\LMSF Queue.)
+
+Set(msg6, \nIt should be pinned to the Quick Access in the Windows file browser.)
+
+If({queueDirectory}=={scriptDir}, Set(msg1, Open the file {strain_info_file} and edit it to contain the appropriate information for this experiment.))
+//If(J:\Shared_Data\LMSF Queue\2025-03-18.URA==GSF-IMS Project\Yeast\URA fitness assay, Set(msg1, Open the file strain_plasmids_16.txt and edit it to contain the appropriate information for this experiment.))
+
+If({queueDirectory}=={scriptDir}, Set(msg5, \nThe file should be in the folder: {scriptDir}.))
+//If(J:\Shared_Data\LMSF Queue\2025-03-18.URA==GSF-IMS Project\Yeast\URA fitness assay, Set(msg5, \nThe file should be in the folder: GSF-IMS Project\Yeast\URA fitness assay.))
+
+If({queueDirectory}=={scriptDir}, Set(msg6, ))
+//If(J:\Shared_Data\LMSF Queue\2025-03-18.URA==GSF-IMS Project\Yeast\URA fitness assay, Set(msg6, ))
+
+UserPrompt(Strain and Plasmids, {msg1}\n{msg2}{msg5}{msg6})
+//UserPrompt(Strain and Plasmids, Open the file strain_plasmids_16.txt from today's folder in the LMSF Queue: J:\Shared_Data\LMSF Queue\2025-03-18.URA.\nThen, verify that it contains the appropriate information for this experiment.\nOne strain and 16 plasmids.\n\nThe LMSF Queue is on the JCloud at: \\resdata-smb\JCloud2\Shared_Data\LMSF Queue.\nIt should be pinned to the Quick Access in the Windows file browser.)
+
+#ReadScript(GSF-IMS Project\Yeast\URA fitness assay\import_N_strain_info.lmsf)
+ImportDictionary({queueDirectory}\{strain_info_file})
+//ImportDictionary(J:\Shared_Data\LMSF Queue\2025-03-18.URA\strain_plasmids_16.txt)
+
+AddXML(strains, strain)
+
+AddXML(strain, strainId, {strain1})
+//AddXML(strain, strainId,  SY992)
+
+AddXML(strain, plasmidId, {plasmid1_1})
+//AddXML(strain, plasmidId,  URA3_WT-A)
+
+AddXML(strains, strain)
+
+AddXML(strain, strainId, {strain1})
+//AddXML(strain, strainId,  SY992)
+
+AddXML(strain, plasmidId, {plasmid1_2})
+//AddXML(strain, plasmidId,  URA3_05-A)
+
+AddXML(strains, strain)
+
+AddXML(strain, strainId, {strain1})
+//AddXML(strain, strainId,  SY992)
+
+AddXML(strain, plasmidId, {plasmid1_3})
+//AddXML(strain, plasmidId,  URA3_B12-A)
+
+AddXML(strains, strain)
+
+AddXML(strain, strainId, {strain1})
+//AddXML(strain, strainId,  SY992)
+
+AddXML(strain, plasmidId, {plasmid1_4})
+//AddXML(strain, plasmidId,  URA3_B12-B)
+
+AddXML(strains, strain)
+
+AddXML(strain, strainId, {strain1})
+//AddXML(strain, strainId,  SY992)
+
+AddXML(strain, plasmidId, {plasmid1_5})
+//AddXML(strain, plasmidId,  URA3_B12-C)
+
+AddXML(strains, strain)
+
+AddXML(strain, strainId, {strain1})
+//AddXML(strain, strainId,  SY992)
+
+AddXML(strain, plasmidId, {plasmid1_6})
+//AddXML(strain, plasmidId,  URA3_F12-B)
+
+If({num_ura_variants} >= 12, AddXML(strains, strain))
+//If(16 >= 12, AddXML(strains, strain))
+
+If({num_ura_variants} >= 12, AddXML(strain, strainId, {strain1}))
+//If(16 >= 12, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} >= 12, AddXML(strain, plasmidId, {plasmid1_7}))
+//If(16 >= 12, AddXML(strain, plasmidId,  URA3_G12-B))
+
+If({num_ura_variants} >= 12, AddXML(strains, strain))
+//If(16 >= 12, AddXML(strains, strain))
+
+If({num_ura_variants} >= 12, AddXML(strain, strainId, {strain1}))
+//If(16 >= 12, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} >= 12, AddXML(strain, plasmidId, {plasmid1_8}))
+//If(16 >= 12, AddXML(strain, plasmidId,  URA3_G12-C))
+
+If({num_ura_variants} >= 12, AddXML(strains, strain))
+//If(16 >= 12, AddXML(strains, strain))
+
+If({num_ura_variants} >= 12, AddXML(strain, strainId, {strain1}))
+//If(16 >= 12, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} >= 12, AddXML(strain, plasmidId, {plasmid1_9}))
+//If(16 >= 12, AddXML(strain, plasmidId,  URA3_WT-A))
+
+If({num_ura_variants} >= 12, AddXML(strains, strain))
+//If(16 >= 12, AddXML(strains, strain))
+
+If({num_ura_variants} >= 12, AddXML(strain, strainId, {strain1}))
+//If(16 >= 12, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} >= 12, AddXML(strain, plasmidId, {plasmid1_10}))
+//If(16 >= 12, AddXML(strain, plasmidId,  URA3_05-A))
+
+If({num_ura_variants} >= 12, AddXML(strains, strain))
+//If(16 >= 12, AddXML(strains, strain))
+
+If({num_ura_variants} >= 12, AddXML(strain, strainId, {strain1}))
+//If(16 >= 12, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} >= 12, AddXML(strain, plasmidId, {plasmid1_11}))
+//If(16 >= 12, AddXML(strain, plasmidId,  URA3_B12-A))
+
+If({num_ura_variants} >= 12, AddXML(strains, strain))
+//If(16 >= 12, AddXML(strains, strain))
+
+If({num_ura_variants} >= 12, AddXML(strain, strainId, {strain1}))
+//If(16 >= 12, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} >= 12, AddXML(strain, plasmidId, {plasmid1_12}))
+//If(16 >= 12, AddXML(strain, plasmidId,  URA3_B12-B))
+
+If({num_ura_variants} == 16, AddXML(strains, strain))
+//If(16 == 16, AddXML(strains, strain))
+
+If({num_ura_variants} == 16, AddXML(strain, strainId, {strain1}))
+//If(16 == 16, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} == 16, AddXML(strain, plasmidId, {plasmid1_13}))
+//If(16 == 16, AddXML(strain, plasmidId,  URA3_B12-C))
+
+If({num_ura_variants} == 16, AddXML(strains, strain))
+//If(16 == 16, AddXML(strains, strain))
+
+If({num_ura_variants} == 16, AddXML(strain, strainId, {strain1}))
+//If(16 == 16, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} == 16, AddXML(strain, plasmidId, {plasmid1_14}))
+//If(16 == 16, AddXML(strain, plasmidId,  URA3_F12-B))
+
+If({num_ura_variants} == 16, AddXML(strains, strain))
+//If(16 == 16, AddXML(strains, strain))
+
+If({num_ura_variants} == 16, AddXML(strain, strainId, {strain1}))
+//If(16 == 16, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} == 16, AddXML(strain, plasmidId, {plasmid1_15}))
+//If(16 == 16, AddXML(strain, plasmidId,  URA3_G12-B))
+
+If({num_ura_variants} == 16, AddXML(strains, strain))
+//If(16 == 16, AddXML(strains, strain))
+
+If({num_ura_variants} == 16, AddXML(strain, strainId, {strain1}))
+//If(16 == 16, AddXML(strain, strainId,  SY992))
+
+If({num_ura_variants} == 16, AddXML(strain, plasmidId, {plasmid1_16}))
+//If(16 == 16, AddXML(strain, plasmidId,  URA3_G12-C))
+
+#End ReadScript(GSF-IMS Project\Yeast\URA fitness assay\import_N_strain_info.lmsf)
+// Add media info to XML file
+AddXML(media, medium)
+
+AddXML(medium, mediaId, {media_1})
+//AddXML(medium, mediaId, SD-Trp)
+
+AddXML(media, medium)
+
+AddXML(medium, mediaId, {media_2})
+//AddXML(medium, mediaId, SD-Trp-Ura)
+
+// media_3 not used for 12-variant experiment
+If({num_ura_variants} != 12, AddXML(media, medium))
+//If(16 != 12, AddXML(media, medium))
+
+If({num_ura_variants} != 12, AddXML(medium, mediaId, {media_3}))
+//If(16 != 12, AddXML(medium, mediaId, SG-Trp))
+
+AddXML(media, medium)
+
+AddXML(medium, mediaId, {media_4})
+//AddXML(medium, mediaId, SG-Trp-Ura)
+
+Get(note, note)
+
+GetExpID({startDate}_URA-assay_{num_ura_variants}-variants)
+//GetExpID(2025-03-18_URA-assay_16-variants)
+
+//review experiment ok/abort dialog
+Set(msg1, Review the following, then click 'OK' to accept or 'Abort' to abort and start over:\n\n)
+
+Set(msg, \tMedia 1:\t\t{media_1})
+//Set(msg, \tMedia 1:\t\tSD-Trp)
+
+Set(msg, {msg}\n\tMedia 2:\t\t{media_2})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura)
+
+Set(msg, {msg}\n\tMedia 3:\t\t{media_3})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp)
+
+Set(msg, {msg}\n\tMedia 4:\t\t{media_4})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura)
+
+Set(msg, {msg}\n\n)
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n)
+
+Set(msg, {msg}\tYeast strain:\t{strain1})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992)
+
+Set(msg, {msg}\n\n\tPlasmids:)
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:)
+
+Set(msg, {msg}\n\t\t\t{plasmid1_1})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A)
+
+Set(msg, {msg}\n\t\t\t{plasmid1_2})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A)
+
+Set(msg, {msg}\n\t\t\t{plasmid1_3})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A)
+
+Set(msg, {msg}\n\t\t\t{plasmid1_4})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B)
+
+Set(msg, {msg}\n\t\t\t{plasmid1_5})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C)
+
+Set(msg, {msg}\n\t\t\t{plasmid1_6})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B)
+
+If({num_ura_variants} >= 12, Set(msg, {msg}\n\t\t\t{plasmid1_7}))
+//If(16 >= 12, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B))
+
+If({num_ura_variants} >= 12, Set(msg, {msg}\n\t\t\t{plasmid1_8}))
+//If(16 >= 12, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C))
+
+If({num_ura_variants} >= 12, Set(msg, {msg}\n\t\t\t{plasmid1_9}))
+//If(16 >= 12, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A))
+
+If({num_ura_variants} >= 12, Set(msg, {msg}\n\t\t\t{plasmid1_10}))
+//If(16 >= 12, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A))
+
+If({num_ura_variants} >= 12, Set(msg, {msg}\n\t\t\t{plasmid1_11}))
+//If(16 >= 12, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A))
+
+If({num_ura_variants} >= 12, Set(msg, {msg}\n\t\t\t{plasmid1_12}))
+//If(16 >= 12, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\t\t\t{plasmid1_13}))
+//If(16 == 16, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\t\t\t{plasmid1_14}))
+//If(16 == 16, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\t\t\t{plasmid1_15}))
+//If(16 == 16, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\t\t\t{plasmid1_16}))
+//If(16 == 16, Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C))
+
+Set(msg, {msg}\n\n)
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\n)
+
+Set(msg, {msg}\tExperiment ID:\n\t\t{experimentId})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\n\tExperiment ID:\n\t\t2025-03-18_URA-assay_16-variants)
+
+Set(msg, {msg}\n\tData directory:\n\t\t{dataDirectory})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\n\tExperiment ID:\n\t\t2025-03-18_URA-assay_16-variants\n\tData directory:\n\t\tC:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants)
+
+Set(msg, {msg}\n\n\tNotes:\n\t\t{note})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\n\tExperiment ID:\n\t\t2025-03-18_URA-assay_16-variants\n\tData directory:\n\t\tC:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants\n\n\tNotes:\n\t\tpre-robot cultures started at 4:30pm yesterday in 1.5 mL media)
+
+Set(msg, {msg}\n\n\{plate1Protocol}\n{plate2Protocol})
+//Set(msg, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\n\tExperiment ID:\n\t\t2025-03-18_URA-assay_16-variants\n\tData directory:\n\t\tC:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants\n\n\tNotes:\n\t\tpre-robot cultures started at 4:30pm yesterday in 1.5 mL media\n\n\\\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 14h.30C.1C.prt\n\\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 72h.30C.1C.no shake.prt)
+
+UserPrompt(Review Experiment Details: {experimentId}, {msg})
+//UserPrompt(Review Experiment Details: 2025-03-18_URA-assay_16-variants, \tMedia 1:\t\tSD-Trp\n\tMedia 2:\t\tSD-Trp-Ura\n\tMedia 3:\t\tSG-Trp\n\tMedia 4:\t\tSG-Trp-Ura\n\n\tYeast strain:\t SY992\n\n\tPlasmids:\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\t\t\t URA3_WT-A\n\t\t\t URA3_05-A\n\t\t\t URA3_B12-A\n\t\t\t URA3_B12-B\n\t\t\t URA3_B12-C\n\t\t\t URA3_F12-B\n\t\t\t URA3_G12-B\n\t\t\t URA3_G12-C\n\n\tExperiment ID:\n\t\t2025-03-18_URA-assay_16-variants\n\tData directory:\n\t\tC:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants\n\n\tNotes:\n\t\tpre-robot cultures started at 4:30pm yesterday in 1.5 mL media\n\n\\\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 14h.30C.1C.prt\n\\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 72h.30C.1C.no shake.prt)
+
+Set(msg, Set up the STAR deck layout as shown.)
+
+Set(msg, {msg}\n\tMedia 1: {media_1})
+//Set(msg, Set up the STAR deck layout as shown.\n\tMedia 1: SD-Trp)
+
+Set(msg, {msg}\n\tMedia 2: {media_2})
+//Set(msg, Set up the STAR deck layout as shown.\n\tMedia 1: SD-Trp\n\tMedia 2: SD-Trp-Ura)
+
+Set(msg, {msg}\n\tMedia 3: {media_3})
+//Set(msg, Set up the STAR deck layout as shown.\n\tMedia 1: SD-Trp\n\tMedia 2: SD-Trp-Ura\n\tMedia 3: SG-Trp)
+
+Set(msg, {msg}\n\tMedia 4: {media_4})
+//Set(msg, Set up the STAR deck layout as shown.\n\tMedia 1: SD-Trp\n\tMedia 2: SD-Trp-Ura\n\tMedia 3: SG-Trp\n\tMedia 4: SG-Trp-Ura)
+
+Set(layoutPng, {scriptDir}\STAR Deck Layout.URA fitness.{num_ura_variants}.PNG)
+//Set(layoutPng, GSF-IMS Project\Yeast\URA fitness assay\STAR Deck Layout.URA fitness.16.PNG)
+
+UserPrompt(STAR Deck Layout, {msg}, {layoutPng}, 1000)
+//UserPrompt(STAR Deck Layout, Set up the STAR deck layout as shown.\n\tMedia 1: SD-Trp\n\tMedia 2: SD-Trp-Ura\n\tMedia 3: SG-Trp\n\tMedia 4: SG-Trp-Ura, GSF-IMS Project\Yeast\URA fitness assay\STAR Deck Layout.URA fitness.16.PNG, 1000)
+
+//////////////////////////////////////////////////////////////////////////////////////
+//--- Final user instructions ----------------------------------------------
+Set(msg, Close the front cover on the STAR.)
+
+Set(msg, {msg}\nEnsure that the Robot arm is in a safe position and that the Guard Override key is in the 'Off' position.)
+//Set(msg, Close the front cover on the STAR.\nEnsure that the Robot arm is in a safe position and that the Guard Override key is in the 'Off' position.)
+
+Set(msg, {msg}\nCheck that all the doors of the S-Cell system are closed.)
+//Set(msg, Close the front cover on the STAR.\nEnsure that the Robot arm is in a safe position and that the Guard Override key is in the 'Off' position.\nCheck that all the doors of the S-Cell system are closed.)
+
+Set(msg, {msg}\nThen click 'OK' to start the experiment.\n)
+//Set(msg, Close the front cover on the STAR.\nEnsure that the Robot arm is in a safe position and that the Guard Override key is in the 'Off' position.\nCheck that all the doors of the S-Cell system are closed.\nThen click 'OK' to start the experiment.\n)
+
+UserPrompt(Ready to Start, {msg}, {lmsfImageDirectory}\dialog-warning.png)
+//UserPrompt(Ready to Start, Close the front cover on the STAR.\nEnsure that the Robot arm is in a safe position and that the Guard Override key is in the 'Off' position.\nCheck that all the doors of the S-Cell system are closed.\nThen click 'OK' to start the experiment.\n, Image files\dialog-warning.png)
+
+//Lid movement test
+UserPrompt(Lid Movement Test, Switch to the STAR computer and observe the lid movement test.)
+
+RemoteHam(S-Cell-STAR, RunMethod, {lidTestMethod})
+//RemoteHam(S-Cell-STAR, RunMethod, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\Pre-run lid test.12.hsl)
+
+Timer(80)
+
+WaitFor(Timer)
+
+WaitFor(S-Cell-STAR)
+
+UserPrompt(Lid Movement Test, If the STAR successfully moved the lids click 'OK' to start the experiment.)
+
+// end lid movement test
+//Turn on HHC for plate pre-warming
+Set(preHeatTemperature, 50)
+
+Set(preheatTime, 600)
+
+RemoteHam(S-Cell-STAR, RunMethod, {initHHCMethod})
+//RemoteHam(S-Cell-STAR, RunMethod, C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Turn on pre-heat HHC.hsl)
+
+Timer(75)
+
+WaitFor(Timer)
+
+WaitFor(S-Cell-STAR)
+
+Set(msg, Verify that HHC no. 1 is now set to the pre-heat temperature, {preHeatTemperature} C, then Click 'OK' to continue.)
+//Set(msg, Verify that HHC no. 1 is now set to the pre-heat temperature, 50 C, then Click 'OK' to continue., 50 C, then Click 'OK' to continue.)
+
+UserPrompt(Check Pre-Heat HHC, {msg})
+//UserPrompt(Check Pre-Heat HHC, Verify that HHC no. 1 is now set to the pre-heat temperature, 50 C, then Click 'OK' to continue.)
+
+WaitFor(Overlord)
+
+//////////////////////////////////////////////////////////////////////////////////////
+//Test readers while 1st plate is pipetting
+Gen5({reader1}, CarrierOut)
+//Gen5(Epoch1, CarrierOut)
+
+WaitFor({reader1}, false)
+//WaitFor(Epoch1, false)
+
+Set(msg, Plate reader {reader1} should have its carrier out. \nVerify that the carrier is out and empty, then Click 'OK' to continue.)
+//Set(msg, Plate reader Epoch1 should have its carrier out. \nVerify that the carrier is out and empty, then Click 'OK' to continue., then Click 'OK' to continue.)
+
+UserPrompt(Check Readers, {msg})
+//UserPrompt(Check Readers, Plate reader Epoch1 should have its carrier out. \nVerify that the carrier is out and empty, then Click 'OK' to continue.)
+
+Gen5({reader1}, RunExp, {initProtocol}, pre-run-test, {dataDirectory})
+//Gen5(Epoch1, RunExp, \\129.6.167.34\Protocols\Growth Plate w Membrane short test.30C.prt, pre-run-test, C:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants)
+
+//////////////////////////////////////////////////////////////////////////////////////
+Set(msg, Click 'OK', then switch to STAR computer to edit tip counters.)
+
+UserPrompt(Check Readers, {msg})
+//UserPrompt(Check Readers, Click 'OK', then switch to STAR computer to edit tip counters.)
+
+RemoteHam(S-Cell-STAR, RunMethod, {hamiltonTipDir}\Edit Tip Counters.hsl)
+//RemoteHam(S-Cell-STAR, RunMethod, C:\Program Files (x86)\Hamilton\Methods\Common\Tip Handling\With 96-Head\Edit Tip Counters.hsl)
+
+WaitFor(S-Cell-STAR)
+
+//End User input and Overlord initialization section
+//////////////////////////////////////////////////////////////////////////////////////
+//--- Growth Plate 1 -----------------------------------------------------------------------------
+Set(plateNum, 1)
+
+Set(platesInStack, 2)
+
+Set(lineage, 1)
+
+If({lineage}==1, Set(hamilton_plasmid_1, {plasmid1_1}))
+//If(1==1, Set(hamilton_plasmid_1,  URA3_WT-A))
+
+If({lineage}==1, Set(hamilton_plasmid_2, {plasmid1_2}))
+//If(1==1, Set(hamilton_plasmid_2,  URA3_05-A))
+
+If({lineage}==1, Set(hamilton_plasmid_3, {plasmid1_3}))
+//If(1==1, Set(hamilton_plasmid_3,  URA3_B12-A))
+
+If({lineage}==1, Set(hamilton_plasmid_4, {plasmid1_4}))
+//If(1==1, Set(hamilton_plasmid_4,  URA3_B12-B))
+
+If({lineage}==1, Set(hamilton_plasmid_5, {plasmid1_5}))
+//If(1==1, Set(hamilton_plasmid_5,  URA3_B12-C))
+
+If({lineage}==1, Set(hamilton_plasmid_6, {plasmid1_6}))
+//If(1==1, Set(hamilton_plasmid_6,  URA3_F12-B))
+
+If({lineage}_{num_ura_variants}==1_12, Set(hamilton_plasmid_7, {plasmid1_7}))
+//If(1_16==1_12, Set(hamilton_plasmid_7,  URA3_G12-B))
+
+If({lineage}_{num_ura_variants}==1_12, Set(hamilton_plasmid_8, {plasmid1_8}))
+//If(1_16==1_12, Set(hamilton_plasmid_8,  URA3_G12-C))
+
+If({lineage}_{num_ura_variants}==1_12, Set(hamilton_plasmid_9, {plasmid1_9}))
+//If(1_16==1_12, Set(hamilton_plasmid_9,  URA3_WT-A))
+
+If({lineage}_{num_ura_variants}==1_12, Set(hamilton_plasmid_10, {plasmid1_10}))
+//If(1_16==1_12, Set(hamilton_plasmid_10,  URA3_05-A))
+
+If({lineage}_{num_ura_variants}==1_12, Set(hamilton_plasmid_11, {plasmid1_11}))
+//If(1_16==1_12, Set(hamilton_plasmid_11,  URA3_B12-A))
+
+If({lineage}_{num_ura_variants}==1_12, Set(hamilton_plasmid_12, {plasmid1_12}))
+//If(1_16==1_12, Set(hamilton_plasmid_12,  URA3_B12-B))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_7, {plasmid1_7}))
+//If(1_16==1_16, Set(hamilton_plasmid_7,  URA3_G12-B))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_8, {plasmid1_8}))
+//If(1_16==1_16, Set(hamilton_plasmid_8,  URA3_G12-C))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_9, {plasmid1_9}))
+//If(1_16==1_16, Set(hamilton_plasmid_9,  URA3_WT-A))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_10, {plasmid1_10}))
+//If(1_16==1_16, Set(hamilton_plasmid_10,  URA3_05-A))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_11, {plasmid1_11}))
+//If(1_16==1_16, Set(hamilton_plasmid_11,  URA3_B12-A))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_12, {plasmid1_12}))
+//If(1_16==1_16, Set(hamilton_plasmid_12,  URA3_B12-B))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_13, {plasmid1_13}))
+//If(1_16==1_16, Set(hamilton_plasmid_13,  URA3_B12-C))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_14, {plasmid1_14}))
+//If(1_16==1_16, Set(hamilton_plasmid_14,  URA3_F12-B))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_15, {plasmid1_15}))
+//If(1_16==1_16, Set(hamilton_plasmid_15,  URA3_G12-B))
+
+If({lineage}_{num_ura_variants}==1_16, Set(hamilton_plasmid_16, {plasmid1_16}))
+//If(1_16==1_16, Set(hamilton_plasmid_16,  URA3_G12-C))
+
+Overlord({getNewGrowthPlate}, [Carousel.Stack.7.Labware.Count] {platesInStack})
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move Tips and New Growth Plate to STAR.ovp, [Carousel.Stack.7.Labware.Count] 2)
+
+WaitFor(Overlord)
+
+Math(platesInStack, {platesInStack} - 1)
+//Math(platesInStack, 2 - 1)
+
+Set(msg, Load the Yeast cultures as shown.)
+
+Set(msg, {msg}\n\tPosition 10: {plasmid1_1})
+//Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A)
+
+Set(msg, {msg}\n\tPosition 11: {plasmid1_2})
+//Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A)
+
+Set(msg, {msg}\n\tPosition 12: {plasmid1_3})
+//Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A)
+
+Set(msg, {msg}\n\tPosition 13: {plasmid1_4})
+//Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B)
+
+Set(msg, {msg}\n\tPosition 14: {plasmid1_5})
+//Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C)
+
+Set(msg, {msg}\n\tPosition 15: {plasmid1_6})
+//Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C\n\tPosition 15:  URA3_F12-B)
+
+If({num_ura_variants} == 12, Set(msg, {msg}\n\tPosition 16: {plasmid1_7}))
+//If(16 == 12, Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C\n\tPosition 15:  URA3_F12-B\n\tPosition 16:  URA3_G12-B))
+
+If({num_ura_variants} == 12, Set(msg, {msg}\n\tPosition 17: {plasmid1_8}))
+//If(16 == 12, Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C\n\tPosition 15:  URA3_F12-B\n\tPosition 17:  URA3_G12-C))
+
+If({num_ura_variants} == 12, Set(msg, {msg}\n\tPosition 18: {plasmid1_9}))
+//If(16 == 12, Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C\n\tPosition 15:  URA3_F12-B\n\tPosition 18:  URA3_WT-A))
+
+If({num_ura_variants} == 12, Set(msg, {msg}\n\tPosition 19: {plasmid1_10}))
+//If(16 == 12, Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C\n\tPosition 15:  URA3_F12-B\n\tPosition 19:  URA3_05-A))
+
+If({num_ura_variants} == 12, Set(msg, {msg}\n\tPosition 20: {plasmid1_11}))
+//If(16 == 12, Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C\n\tPosition 15:  URA3_F12-B\n\tPosition 20:  URA3_B12-A))
+
+If({num_ura_variants} == 12, Set(msg, {msg}\n\tPosition 21: {plasmid1_12}))
+//If(16 == 12, Set(msg, Load the Yeast cultures as shown.\n\tPosition 10:  URA3_WT-A\n\tPosition 11:  URA3_05-A\n\tPosition 12:  URA3_B12-A\n\tPosition 13:  URA3_B12-B\n\tPosition 14:  URA3_B12-C\n\tPosition 15:  URA3_F12-B\n\tPosition 21:  URA3_B12-B))
+
+If({num_ura_variants} == 16, Set(msg, Load the Yeast cultures as shown.))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 1: {plasmid1_1}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 2: {plasmid1_2}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 3: {plasmid1_3}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 4: {plasmid1_4}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 5: {plasmid1_5}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 6: {plasmid1_6}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 7: {plasmid1_7}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 8: {plasmid1_8}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 9: {plasmid1_9}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 10: {plasmid1_10}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 11: {plasmid1_11}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A\n\tPosition 11:  URA3_B12-A))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 12: {plasmid1_12}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A\n\tPosition 11:  URA3_B12-A\n\tPosition 12:  URA3_B12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 13: {plasmid1_13}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A\n\tPosition 11:  URA3_B12-A\n\tPosition 12:  URA3_B12-B\n\tPosition 13:  URA3_B12-C))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 14: {plasmid1_14}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A\n\tPosition 11:  URA3_B12-A\n\tPosition 12:  URA3_B12-B\n\tPosition 13:  URA3_B12-C\n\tPosition 14:  URA3_F12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 15: {plasmid1_15}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A\n\tPosition 11:  URA3_B12-A\n\tPosition 12:  URA3_B12-B\n\tPosition 13:  URA3_B12-C\n\tPosition 14:  URA3_F12-B\n\tPosition 15:  URA3_G12-B))
+
+If({num_ura_variants} == 16, Set(msg, {msg}\n\tPosition 16: {plasmid1_16}))
+//If(16 == 16, Set(msg, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A\n\tPosition 11:  URA3_B12-A\n\tPosition 12:  URA3_B12-B\n\tPosition 13:  URA3_B12-C\n\tPosition 14:  URA3_F12-B\n\tPosition 15:  URA3_G12-B\n\tPosition 16:  URA3_G12-C))
+
+Set(loadStrainsPng, {scriptDir}\Yeast strains.{num_ura_variants}.PNG)
+//Set(loadStrainsPng, GSF-IMS Project\Yeast\URA fitness assay\Yeast strains.16.PNG)
+
+UserPrompt(Load Strains, {msg}, {loadStrainsPng}, 1000)
+//UserPrompt(Load Strains, Load the Yeast cultures as shown.\n\tPosition 1:  URA3_WT-A\n\tPosition 2:  URA3_05-A\n\tPosition 3:  URA3_B12-A\n\tPosition 4:  URA3_B12-B\n\tPosition 5:  URA3_B12-C\n\tPosition 6:  URA3_F12-B\n\tPosition 7:  URA3_G12-B\n\tPosition 8:  URA3_G12-C\n\tPosition 9:  URA3_WT-A\n\tPosition 10:  URA3_05-A\n\tPosition 11:  URA3_B12-A\n\tPosition 12:  URA3_B12-B\n\tPosition 13:  URA3_B12-C\n\tPosition 14:  URA3_F12-B\n\tPosition 15:  URA3_G12-B\n\tPosition 16:  URA3_G12-C, GSF-IMS Project\Yeast\URA fitness assay\Yeast strains.16.PNG, 1000)
+
+Set(worklistFile, {dataDirectory}\{experimentId}_growth-plate_{lineage}-{plateNum}.csv)
+//Set(worklistFile, C:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants\2025-03-18_URA-assay_16-variants_growth-plate_1-1.csv)
+
+Set(dilutionFactor, 10)
+
+RemoteHam(S-Cell-STAR, RunMethod, {plate_1_Method})
+//RemoteHam(S-Cell-STAR, RunMethod, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\URA fitness.16 variants.plate 1.hsl)
+
+Timer({plate_1_MethodTime})
+//Timer(950)
+
+WaitFor(Timer)
+
+WaitFor(S-Cell-STAR)
+
+WaitFor({reader1}, false)
+//WaitFor(Epoch1, false)
+
+Gen5({reader1}, CarrierOut)
+//Gen5(Epoch1, CarrierOut)
+
+WaitFor({reader1}, false)
+//WaitFor(Epoch1, false)
+
+Overlord({ovpCommDirectory}\Move Growth Plate from STAR to Reader No Seal.ovp, [Gen5.Reader.Name] "{reader1}")
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from STAR to Reader No Seal.ovp, [Gen5.Reader.Name] "Epoch1")
+
+WaitFor(Overlord)
+
+Gen5({reader1}, RunExp, {singleReadProtocol}, {experimentId}_single-read_{lineage}-0, {dataDirectory})
+//Gen5(Epoch1, RunExp, \\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane single read.30C.1C.prt, 2025-03-18_URA-assay_16-variants_single-read_1-0, C:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants)
+
+Timer({singleReadProtocolTime})
+//Timer(68)
+
+WaitFor(Timer)
+
+WaitFor({reader1})
+//WaitFor(Epoch1)
+
+Gen5({reader1}, CarrierOut)
+//Gen5(Epoch1, CarrierOut)
+
+WaitFor({reader1}, false)
+//WaitFor(Epoch1, false)
+
+Overlord({ovpCommDirectory}\Move Growth Plate from Reader to Reader and Seal.ovp, [Gen5.Reader.Name] "{reader1}" [Gen5.Reader2.Name] "{reader1}")
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from Reader to Reader and Seal.ovp, [Gen5.Reader.Name] "Epoch1" [Gen5.Reader2.Name] "Epoch1")
+
+WaitFor(Overlord)
+
+Gen5({reader1}, RunExp, {plate1Protocol}, {experimentId}_growth-plate_{lineage}-{plateNum}, {dataDirectory})
+//Gen5(Epoch1, RunExp, \\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 14h.30C.1C.prt, 2025-03-18_URA-assay_16-variants_growth-plate_1-1, C:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants)
+
+GetTimeNow(readStartTime)
+
+Math(readEndTime, {readStartTime} + {plate1ProtocolTime})
+//Math(readEndTime, 2025/03/18 17:04:37 + 51000)
+
+Set(msg1, Remove yeast cultures from deck and put in bio-waste.)
+
+UserPrompt(Dispose of Yeast Cultures, {msg1}, {scriptDir}\Yeast strains.{num_ura_variants}.PNG, 1000)
+//UserPrompt(Dispose of Yeast Cultures, Remove yeast cultures from deck and put in bio-waste., GSF-IMS Project\Yeast\URA fitness assay\Yeast strains.16.PNG, 1000)
+
+//--- Plate 2 -----------------------------------------------------------------------------
+Math(plateNum, {plateNum} + 1)
+//Math(plateNum, 1 + 1)
+
+//Move new plate and tips before WaitFor(Timer) so user can make sure there is no Overlord error
+Overlord({getNewGrowthPlate}, [Carousel.Stack.7.Labware.Count] {platesInStack} [STAR.Plate.Handling.Labware.Name] "Tips300" [STAR.Tip.300.Index] {tips300Index})
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Labware\Move Tips and New Growth Plate to STAR.ovp, [Carousel.Stack.7.Labware.Count] 1 [STAR.Plate.Handling.Labware.Name] "Tips300" [STAR.Tip.300.Index] 1)
+
+WaitFor(Overlord)
+
+Math(tips300Index, {tips300Index} - 1)
+//Math(tips300Index, 1 - 1)
+
+Math(platesInStack, {platesInStack} - 1)
+//Math(platesInStack, 1 - 1)
+
+//Wait for reader to get close to finished before starting pipetting method
+Math(pipetteWaitTime, {preHeatPlateTime} + {plate_2_MethodTime})
+//Math(pipetteWaitTime, 540 + 600)
+
+Math(pipetteWaitTime, {pipetteWaitTime} + {pipettingCushionTime})
+//Math(pipetteWaitTime, 1140 + 2400)
+
+Math(pipetteStartTime, {readEndTime} - {pipetteWaitTime})
+//Math(pipetteStartTime, 2025/03/19 07:14:37 - 3540)
+
+Timer({pipetteStartTime})
+//Timer(2025/03/19 06:15:37)
+
+WaitFor(Timer)
+
+Set(worklistFile, {dataDirectory}\{experimentId}_growth-plate_{lineage}-{plateNum}.csv)
+//Set(worklistFile, C:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants\2025-03-18_URA-assay_16-variants_growth-plate_1-2.csv)
+
+Set(dilutionFactor, 50)
+
+RemoteHam(S-Cell-STAR, RunMethod, {plate_2_Method})
+//RemoteHam(S-Cell-STAR, RunMethod, C:\Program Files (x86)\Hamilton\Methods\GSF-IMS Project\Yeast Methods\URA fitness assay\URA fitness.16 variants.plate 2.hsl)
+
+Timer({plate_2_MethodTime})
+//Timer(600)
+
+WaitFor(Timer)
+
+WaitFor(S-Cell-STAR)
+
+Math(preHeatStartTime, {readEndTime} - {preHeatPlateTime})
+//Math(preHeatStartTime, 2025/03/19 07:14:37 - 540)
+
+Timer({preHeatStartTime})
+//Timer(2025/03/19 07:05:37)
+
+WaitFor(Timer)
+
+RemoteHam(S-Cell-STAR, RunMethod, {preHeatPlateMethod})
+//RemoteHam(S-Cell-STAR, RunMethod, C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Pre-heat growth plate.hsl)
+
+Timer(600)
+
+WaitFor(Timer)
+
+WaitFor(S-Cell-STAR)
+
+WaitFor({reader1})
+//WaitFor(Epoch1)
+
+Gen5({reader1}, CarrierOut)
+//Gen5(Epoch1, CarrierOut)
+
+WaitFor({reader1}, false)
+//WaitFor(Epoch1, false)
+
+Overlord({ovpCommDirectory}\Move Growth Plate from Reader to STAR.ovp, [Gen5.Reader.Name] "{reader1}")
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from Reader to STAR.ovp, [Gen5.Reader.Name] "Epoch1")
+
+WaitFor(Overlord)
+
+Gen5({reader1}, CarrierIn)
+//Gen5(Epoch1, CarrierIn)
+
+WaitFor({reader1}, false)
+//WaitFor(Epoch1, false)
+
+Set(keepOldGrowthPlate, false)
+
+RemoteHam(S-Cell-STAR, RunMethod, {copyPlateMethod})
+//RemoteHam(S-Cell-STAR, RunMethod, C:\Program Files (x86)\Hamilton\Methods\Shared Methods\GP pre-heat and dilute-copy\Dilute-copy plate x-fold with 96-head.hsl)
+
+Timer(180)
+
+WaitFor(Timer)
+
+WaitFor(S-Cell-STAR)
+
+Gen5({reader1}, CarrierOut)
+//Gen5(Epoch1, CarrierOut)
+
+WaitFor({reader1}, false)
+//WaitFor(Epoch1, false)
+
+Overlord({ovpCommDirectory}\Move Growth Plate from STAR to Reader.ovp, [Gen5.Reader.Name] "{reader1}" [Sealer.ManualSeal] "{manualSeal}")
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Move Growth Plate from STAR to Reader.ovp, [Gen5.Reader.Name] "Epoch1" [Sealer.ManualSeal] "No")
+
+WaitFor(Overlord)
+
+Gen5({reader1}, RunExp, {plate2Protocol}, {experimentId}_growth-plate_{lineage}-{plateNum}, {dataDirectory})
+//Gen5(Epoch1, RunExp, \\129.6.167.34\Protocols\GSF-IMS-Yeast\Growth Plate w Membrane 72h.30C.1C.no shake.prt, 2025-03-18_URA-assay_16-variants_growth-plate_1-2, C:\Shared Files\Data\GSF-IMS-Yeast\2025-03-18_URA-assay_16-variants)
+
+GetTimeNow(readStartTime)
+
+Math(readEndTime, {readStartTime} + {plate2ProtocolTime})
+//Math(readEndTime, 2025/03/19 07:23:32 + 259800)
+
+//--- Clean up --------------------------------------------------------------------------------------
+Overlord({ovpCommDirectory}\Sealer Heater Off.ovp)
+//Overlord(C:\Program Files (x86)\PAA\Overlord3\Procedures\Common\Sealer Heater Off.ovp)
+
+WaitFor(Overlord)
+
+SaveXML()
