@@ -1,6 +1,6 @@
 # Data and analysis workbooks for Ikonomova *et al*.-- Experimental Evaluation of AI-Driven Protein Design Risks Using Safe Biological Proxies
 
-This repository contains the data and workbooks used to create the figures contained in the publication *"Experimental Evaluation of AI-Driven Protein Design Risks Using Safe Biological Proxies."*
+This repository contains the data and workbooks used to create figures contained in the publication *"Experimental Evaluation of AI-Driven Protein Design Risks Using Safe Biological Proxies."*
 The files are organized as follows:
 ```
 .
