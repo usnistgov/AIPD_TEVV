@@ -100,7 +100,7 @@ BibTeX:
 ```
 
 ## Contact information
-For questions pertaining to these files, please contact:
+For questions pertaining to these files or the publication in general, please contact:
 
 - geoffrey.taghon@nist.gov (Jupyter notebooks, CSV data)
 - bwittmann@microsoft.com (AI sequence generation)
