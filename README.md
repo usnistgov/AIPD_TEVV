@@ -1,152 +1,106 @@
-# NIST Open-Source Software Repository Template
+# Data and analysis workbooks for Ikonomova *et al*.-- Experimental Evaluation of AI-Driven Protein Design Risks Using Safe Biological Proxies
 
-Use of GitHub by NIST employees for government work is subject to
-the [Rules of Behavior for GitHub][gh-rob]. This is the
-recommended template for NIST employees, since it contains
-required files with approved text. For details, please consult
-the Office of Data & Informatics' [Quickstart Guide to GitHub at
-NIST][gh-odi].
+This repository contains the data and workbooks used to create figures contained in the publication *"Experimental Evaluation of AI-Driven Protein Design Risks Using Safe Biological Proxies."*
+The files are organized as follows:
+```
+.
+├── analysis
+│   ├── blast_bestmatch.ipynb
+│   ├── heatmap.ipynb
+│   ├── pdz_analysis.ipynb
+│   ├── t7_analysis.ipynb
+│   └── ura3_analysis.ipynb
+├── CODEMETA.yaml
+├── CODEOWNERS
+├── data
+│   ├── assay
+│   │   ├── pdz_all_results_df.csv
+│   │   ├── t7_cfe_hierarchical_model.csv
+│   │   └── URA3
+│   │       ├── 2025-01-03_URA-assay_6-variants
+│   │       ├── 2025-01-09_URA-assay_12-variants
+│   │       ├── 2025-01-15_URA-assay_16-variants
+│   │       ├── 2025-01-16_URA-assay_16-variants
+│   │       ├── 2025-01-18_URA-assay_16-variants
+│   │       ├── 2025-01-24_URA-assay_16-variants
+│   │       ├── 2025-01-25_URA-assay_16-variants
+│   │       ├── 2025-01-28_URA-assay_16-variants
+│   │       ├── 2025-03-14_URA-assay_16-variants
+│   │       ├── 2025-03-18_URA-assay_16-variants
+│   │       ├── 2025-03-25_URA-assay_16-variants
+│   │       └── 2025-04-22_URA-assay_16-variants
+│   ├── blast
+│   │   ├── psd95pdz3_blast_results.csv
+│   │   ├── t7rnapol_blast_results.csv
+│   │   └── ura3_blast_results.csv
+│   ├── fasta
+│   │   ├── psd95pdz3.fasta
+│   │   ├── t7rnapol.fasta
+│   │   └── ura3.fasta
+│   ├── output
+│   │   ├── pdz_blast_flags.csv
+│   │   ├── pdz_insilico_merged.csv
+│   │   ├── t7_insilico_merged.csv
+│   │   ├── t7rnapol_blast_flags.csv
+│   │   ├── ura3_blast_flags.csv
+│   │   └── ura3_insilico_merged.csv
+│   ├── selected_sequences.csv
+│   └── ura3_plasmid_list_with_sequence.csv
+├── fair-software.md
+├── LICENSE.md
+├── README.md
+└── requirements.txt
+```
 
-Please click on the green **Use this template** button above to
-create a new repository under the [usnistgov][gh-nst]
-organization for your own open-source work. Please do not "fork"
-the repository directly, and do not create the templated
-repository under your individual account.
+- `/analysis` contains the workbooks; `/data` contains all data.
+- `requirements.txt` contains all necessary Python modules to run the workbooks.
+- All Jupyter notebooks are tested on MacOS 15.4, Python 3.12.
 
-The key files contained in this repository -- which will also
-appear in templated copies -- are listed below, with some things
-to know about each.
+## Analysis
+### blast_bestmatch
+This workbook generates the csv files containing best matches to synthetic homologs using NCBI BLAST+. Results are saved to `data/blast` and used in other analysis notebooks.
 
----
+### heatmap
+This workbook generates the heatmap from publication Figure 3, using normalized primary assay data from all protein targets.
 
-## README
+### {protein}_analysis
+These workbooks generate the individual plots for the synthetic homolog primary assay results, used to create publication Figures 2-4 and various Supplementary Figures.
 
-Each repository will contain a plain-text [README file][wk-rdm],
-preferably formatted using [GitHub-flavored Markdown][gh-mdn] and
-named `README.md` (this file) or `README`.
+### seqid_vs_tm
+This workbook calculates and plots the relationship between number of sequence substitutions from wildtype in synthetic homologs and calculated TM-score when compared to wildtype. An example for PDZ3 is seen in publication Figure S13.
 
-Per the [GitHub ROB][gh-rob] and [NIST Suborder 1801.02][nist-s-1801-02],
-your README should contain:
+## Data
+`selected_sequences.csv`: contains the *in silico* metrics for all synthetic homologs.
 
-1. Software or Data description
-   - Statements of purpose and maturity
-   - Description of the repository contents
-   - Technical installation instructions, including operating
-     system or software dependencies
-1. Contact information
-   - PI name, NIST OU, Division, and Group names
-   - Contact email address at NIST
-   - Details of mailing lists, chatrooms, and discussion forums,
-     where applicable
-1. Related Material
-   - URL for associated project on the NIST website or other Department
-     of Commerce page, if available
-   - References to user guides if stored outside of GitHub
-1. Directions on appropriate citation with example text
-1. References to any included non-public domain software modules,
-   and additional license language if needed, *e.g.* [BSD][li-bsd],
-   [GPL][li-gpl], or [MIT][li-mit]
+`ura3_plasmid_list_with_sequence.csv`: contains the DNA plate locations and identifiers for URA3 synthetic homologs, used to map identifiers to assay results.
+### assay
+This folder contains the data collected in primary assays of synthetic homologs.
+### blast
+This folder contains the output of the `blast_bestmatch` workbook: best match entries for all synthetic homologs, if found. Blank cells indicate a match was not found.
+### fasta
+This folder contains amino acid or DNA fasta sequences for all synthetic homologs, used by `blast_bestmatch` to calculate best match entries.
+### output
+This folder contains all data exported by the analysis workbooks, including merged experimental and *in silico* datasets for synthetic homologs and results of BLAST flagging analysis.
 
-The more detailed your README, the more likely our colleagues
-around the world are to find it through a Web search. For general
-advice on writing a helpful README, please review
-[*Making Readmes Readable*][18f-guide] from 18F and Cornell's
-[*Guide to Writing README-style Metadata*][cornell-meta].
+## Citation
+- Ikonomova, S. P., Wittmann, B. J., Piorino, F., Ross, D. J., Schaffter, S. W., Vasilyeva, O., Horvitz, E., Diggans, J., Strychalski, E. A., Lin-Gibson, S., & Taghon, G. J. (2025 May X). *Experimental evaluation of AI-driven protein design risks using safe biological proxies*. bioRxiv. https://doi.org/XXXX
 
-## LICENSE
+BibTeX:
+```
+@unpublished{Ikonomova2025_TEVV,
+  author = {Ikonomova, Svetlana P. and Wittmann, Bruce J. and Piorino, Fernanda and Ross, David J. and Schaffter, Samuel W. and Vasilyeva, Olga and Horvitz, Eric and Diggans, James and Strychalski, Elizabeth A. and Lin-Gibson, Sheng and Taghon, Geoffrey J.},
+  title = {Experimental Evaluation of {AI}-Driven Protein Design Risks Using Safe Biological Proxies},
+  year = {2025},
+  month = {May},
+  day = {X},
+  note = {bioRxiv preprint},
+  doi = {10.1101/XXXX},  % Replace XXXX with actual DOI
+  url = {https://doi.org/10.1101/XXXX}  % Replace XXXX with actual DOI
+}
+```
 
-Each repository will contain a plain-text file named `LICENSE.md`
-or `LICENSE` that is phrased in compliance with the Public Access
-to NIST Research [*Copyright, Fair Use, and Licensing Statement
-for SRD, Data, and Software*][nist-open], which provides
-up-to-date official language for each category in a blue box.
+## Contact information
+For questions pertaining to these files, please contact:
 
-- The version of [LICENSE.md](LICENSE.md) included in this
-  repository is approved for use.
-- Updated language on the [Licensing Statement][nist-open] page
-  supersedes the copy in this repository. You may transcribe the
-  language from the appropriate "blue box" on that page into your
-  README.
-
-If your repository includes any software or data that is licensed
-by a third party, create a separate file for third-party licenses
-(`THIRD_PARTY_LICENSES.md` is recommended) and include copyright
-and licensing statements in compliance with the conditions of
-those licenses.
-
-## CODEOWNERS
-
-This template repository includes a file named
-[CODEOWNERS](CODEOWNERS), which visitors can view to discover
-which GitHub users are "in charge" of the repository. More
-crucially, GitHub uses it to assign reviewers on pull requests.
-GitHub documents the file (and how to write one) [here][gh-cdo].
-
-***Please update that file*** to point to your own account or
-team, so that the [Open-Source Team][gh-ost] doesn't get spammed
-with spurious review requests. *Thanks!*
-
-## CODEMETA
-
-Project metadata is captured in `CODEMETA.yaml`, used by the NIST
-Software Portal to sort your work under the appropriate thematic
-homepage. ***Please update this file*** with the appropriate
-"theme" and "category" for your code/data/software. The Tier 1
-themes are:
-
-- [Advanced communications](https://www.nist.gov/advanced-communications)
-- [Bioscience](https://www.nist.gov/bioscience)
-- [Buildings and Construction](https://www.nist.gov/buildings-construction)
-- [Chemistry](https://www.nist.gov/chemistry)
-- [Electronics](https://www.nist.gov/electronics)
-- [Energy](https://www.nist.gov/energy)
-- [Environment](https://www.nist.gov/environment)
-- [Fire](https://www.nist.gov/fire)
-- [Forensic Science](https://www.nist.gov/forensic-science)
-- [Health](https://www.nist.gov/health)
-- [Information Technology](https://www.nist.gov/information-technology)
-- [Infrastructure](https://www.nist.gov/infrastructure)
-- [Manufacturing](https://www.nist.gov/manufacturing)
-- [Materials](https://www.nist.gov/materials)
-- [Mathematics and Statistics](https://www.nist.gov/mathematics-statistics)
-- [Metrology](https://www.nist.gov/metrology)
-- [Nanotechnology](https://www.nist.gov/nanotechnology)
-- [Neutron research](https://www.nist.gov/neutron-research)
-- [Performance excellence](https://www.nist.gov/performance-excellence)
-- [Physics](https://www.nist.gov/physics)
-- [Public safety](https://www.nist.gov/public-safety)
-- [Resilience](https://www.nist.gov/resilience)
-- [Standards](https://www.nist.gov/standards)
-- [Transportation](https://www.nist.gov/transportation)
-
----
-
-[usnistgov/opensource-repo][gh-osr] is developed and maintained
-by the [opensource-team][gh-ost], principally:
-
-- Gretchen Greene, @GRG2
-- Yannick Congo, @faical-yannick-congo
-- Trevor Keller, @tkphd
-
-Please reach out with questions and comments.
-
-<!-- References -->
-
-[18f-guide]: https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md
-[cornell-meta]: https://data.research.cornell.edu/content/readme
-[gh-cdo]: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
-[gh-mdn]: https://github.github.com/gfm/
-[gh-nst]: https://github.com/usnistgov
-[gh-odi]: https://odiwiki.nist.gov/ODI/GitHub.html
-[gh-osr]: https://github.com/usnistgov/opensource-repo/
-[gh-ost]: https://github.com/orgs/usnistgov/teams/opensource-team
-[gh-rob]: https://odiwiki.nist.gov/pub/ODI/GitHub/GHROB.pdf
-[gh-tpl]: https://github.com/usnistgov/carpentries-development/discussions/3
-[li-bsd]: https://opensource.org/licenses/bsd-license
-[li-gpl]: https://opensource.org/licenses/gpl-license
-[li-mit]: https://opensource.org/licenses/mit-license
-[nist-code]: https://code.nist.gov
-[nist-disclaimer]: https://www.nist.gov/open/license
-[nist-s-1801-02]: https://inet.nist.gov/adlp/directives/review-data-intended-publication
-[nist-open]: https://www.nist.gov/open/license#software
-[wk-rdm]: https://en.wikipedia.org/wiki/README
+- geoffrey.taghon@nist.gov (Jupyter notebooks, CSV data)
+- bwittmann@microsoft.com (AI sequence generation)
