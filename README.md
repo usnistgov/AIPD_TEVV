@@ -83,7 +83,7 @@ This folder contains amino acid or DNA fasta sequences for all synthetic homolog
 This folder contains all data exported by the analysis workbooks, including merged experimental and *in silico* datasets for synthetic homologs and results of BLAST flagging analysis.
 
 ## Citation
-- Ikonomova, S. P., Wittmann, B. J., Piorino, F., Ross, D. J., Schaffter, S. W., Vasilyeva, O., Horvitz, E., Diggans, J., Strychalski, E. A., Lin-Gibson, S., & Taghon, G. J. (2025 May X). *Experimental evaluation of AI-driven protein design risks using safe biological proxies*. bioRxiv. https://doi.org/XXXX
+- Ikonomova, S. P., Wittmann, B. J., Piorino, F., Ross, D. J., Schaffter, S. W., Vasilyeva, O., Horvitz, E., Diggans, J., Strychalski, E. A., Lin-Gibson, S., & Taghon, G. J. (2025 May 16). *Experimental evaluation of AI-driven protein design risks using safe biological proxies*. bioRxiv. https://doi.org/10.1101/2025.05.15.654077
 
 BibTeX:
 ```
@@ -92,10 +92,10 @@ BibTeX:
   title = {Experimental Evaluation of {AI}-Driven Protein Design Risks Using Safe Biological Proxies},
   year = {2025},
   month = {May},
-  day = {X},
+  day = {16},
   note = {bioRxiv preprint},
-  doi = {10.1101/XXXX},  % Replace XXXX with actual DOI
-  url = {https://doi.org/10.1101/XXXX}  % Replace XXXX with actual DOI
+  doi = {10.1101/2025.05.15.654077},
+  url = {https://doi.org/10.1101/2025.05.15.654077}
 }
 ```
 
